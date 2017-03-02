@@ -1,0 +1,11 @@
+.stock-container {
+  align-items: center;
+  justify-content: center;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  margin-top: 10vh;
+}
+
+.navigation {
+  margin-top: 3vh;
+}

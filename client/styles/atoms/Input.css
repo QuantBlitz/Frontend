@@ -1,0 +1,32 @@
+@value Palette: "../globals/Palette";
+@value Blue, Dark-Grey from Palette;
+
+.root {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid Dark-Grey;
+  color: Dark-Grey;
+  outline: none;
+  padding: 10px 0px;
+}
+
+.label-check {
+  background: #46485c;
+  border: 3px solid #252730;
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 2px #46485c;
+  content: "";
+  cursor: pointer;
+  display: block;
+  height: 4px;
+  margin-top: 2px;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  width: 4px;
+}
+
+.label-checked {
+  background: Blue;
+  border: 3px solid #252730;
+  box-shadow: 0px 0px 0px 2px #b5cd60;
+}

@@ -1,0 +1,11 @@
+@value Palette: "../globals/Palette";
+@value Blue, Grey from Palette;
+
+.root {
+  color: Blue;
+  margin: 20px;
+
+  &:hover {
+    color: Grey;
+  }
+}

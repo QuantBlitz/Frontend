@@ -1,0 +1,7 @@
+.root {
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -85px;
+  position: fixed;
+  top: 85%;
+}

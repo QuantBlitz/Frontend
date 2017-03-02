@@ -1,0 +1,18 @@
+.root {
+  cursor: pointer;
+  margin-bottom: 1%;
+}
+
+.action {
+  height: 2vh;
+}
+
+.icon-container {
+  cursor: pointer;
+}
+
+.icon {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

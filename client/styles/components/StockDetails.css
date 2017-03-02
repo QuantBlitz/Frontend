@@ -1,0 +1,10 @@
+.root {
+  height: 15vh;
+  margin: 5vh 0 5vh 0;
+  text-align: center;
+  width: 20vw;
+}
+
+.btn {
+  margin: 5px;
+}

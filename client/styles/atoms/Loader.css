@@ -1,0 +1,90 @@
+@value Palette:  "../globals/Palette";
+@value Blue from Palette;
+
+.loader {
+  animation: rotate-loader 5s infinite;
+  border: 1px solid Blue;
+  box-sizing: border-box;
+  height: 115px;
+  line-height: 0;
+  margin: 0 auto;
+  margin-top: 40vh;
+  padding: 25px;
+  transform: rotate(-45deg);
+  width: 115px;
+}
+
+.segment-holder {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 50%;
+  position: relative;
+  width: 50%;
+}
+
+.segment {
+  background: Blue;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.one {
+  composes: segment;
+  animation: slide-one 1s infinite;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+}
+
+.two {
+  composes: segment;
+  animation: slide-two 1s infinite;
+  animation-delay: 0.25s;
+  left: 0;
+  height: 100%;
+  width: 0;
+}
+
+.three {
+  composes: segment;
+  animation: slide-two 1s infinite;
+  animation-delay: 0.75s;
+  height: 100%;
+  right: 0;
+  width: 0;
+}
+
+.four {
+  composes: segment;
+  animation: slide-one 1s infinite;
+  animation-delay: 0.5s;
+  height: 0;
+  top: 0;
+  width: 100%;
+}
+
+@keyframes slide-one {
+  0%    { height: 0;    opacity: 1; }
+  12.5% { height: 100%; opacity: 1; }
+  50%   { opacity: 1; }
+  100%  { height: 100%; opacity: 0;}
+}
+
+@keyframes slide-two {
+  0%    { width: 0;    opacity: 1; }
+  12.5% { width: 100%; opacity: 1; }
+  50%   { opacity: 1; }
+  100%  { width: 100%; opacity: 0;}
+}
+
+@keyframes rotate-loader {
+  0%   { transform: rotate(-45deg); }
+  20%  { transform: rotate(-45deg); }
+  25%  { transform: rotate(-135deg); }
+  45%  { transform: rotate(-135deg); }
+  50%  { transform: rotate(-225deg); }
+  70%  { transform: rotate(-225deg); }
+  75%  { transform: rotate(-315deg); }
+  95%  { transform: rotate(-315deg); }
+  100% { transform: rotate(-405deg); }
+}
