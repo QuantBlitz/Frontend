@@ -1,3 +1,15 @@
 .root {
   min-height: 85vh;
 }
+
+.logo {
+  height: 50%;
+  width: 50%;
+}
+
+.pic {
+  position: relative;
+  height: 20%;
+  transform: translateY(50%);
+  width: 20%;
+}

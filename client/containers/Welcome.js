@@ -24,6 +24,11 @@ class Welcome extends Component {
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>
+        <div className='row center' styleName='logo'>
+          <div className='offset-s4'>
+            <img src='https://puu.sh/usn2J/7e4c199b13.png' styleName='pic' />
+          </div>
+        </div>
         <HeroSection onClick={() => this.refs.modal.show()} />
         <IconSection />
       </div>
