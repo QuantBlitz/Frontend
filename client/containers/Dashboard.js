@@ -52,14 +52,14 @@ class Dashboard extends Component {
     dispatch(getStockQuote(e.target.name))
     dispatch(clearSymbolInput())
   }
-  handleStockAction = (e) => {
+  handleStockAction = (action) => {
     const { dispatch, watchlist, quoteData } = this.props
     const { shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
 
-    if (shares < 1 && e.target.name !== 'watch') return alert('Must buy/sell at least one share')
+    if (shares < 1 && action !== 'watch') return alert('Must buy/sell at least one share')
 
-    if (e.target.name === 'watch' && checkSymbolDuplicates(Symbol, watchlist)) return alert('You already have this on your watchlist!')
+    if (action === 'watch' && checkSymbolDuplicates(Symbol, watchlist)) return alert('You already have this on your watchlist!')
 
     const data = {
       shares,
@@ -68,7 +68,7 @@ class Dashboard extends Component {
       price: LastPrice
     }
 
-    dispatch(stockAction(e.target.name, data))
+    dispatch(stockAction(action, data))
     dispatch(clearSymbolInput())
     this.setState({ shares: 0 })
   }

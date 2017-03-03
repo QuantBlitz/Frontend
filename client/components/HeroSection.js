@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 const HeroSection = (props) => {
   return (
@@ -18,6 +18,10 @@ const HeroSection = (props) => {
       </div>
     </div>
   )
+}
+
+HeroSection.propTypes = {
+  onClick: PropTypes.func.isRequired
 }
 
 export default HeroSection

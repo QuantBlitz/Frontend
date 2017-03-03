@@ -15,15 +15,15 @@ const StockDetails = (props) => {
       <NumberInput onChange={props.onChange} value={props.value} />
       <span>
         <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
-          onClick={props.onClick} name='buy'>
+          onClick={() => props.onClick('buy')}>
           <i className='material-icons'>check</i>
         </a>
         <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
-          onClick={props.onClick} name='sell'>
+          onClick={() => props.onClick('sell')}>
           <i className='material-icons'>close</i>
         </a>
         <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
-          onClick={props.onClick} name='watch'>
+          onClick={() => props.onClick('watch')}>
           <i className='material-icons'>add</i>
         </a>
       </span>
