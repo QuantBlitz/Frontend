@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.logo {
+  height: 56px;
+  position: relative;
+  transform: translateY(7%);
+  width: 56px;
+  /* -webkit-filter: invert(100%); filter: invert(100%); */
+  -webkit-filter: opacity(50%); filter: opacity(50%);
+}
+
 .link {
   composes: root from '../atoms/NavItem';
 }

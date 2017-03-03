@@ -23,7 +23,7 @@ const PortfolioItem = (props) => {
 
 PortfolioItem.propTypes = {
   price: PropTypes.string.isRequired,
-  shares: PropTypes.string.isRequired,
+  shares: PropTypes.number.isRequired,
   symbol: PropTypes.string.isRequired
 }
 

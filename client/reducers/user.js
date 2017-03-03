@@ -54,7 +54,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: false,
-        userData: action.payload.user,
+        userDetails: action.payload.user,
         portfolioData: action.payload.portfolio,
         watchlistData: action.payload.watchlist
       }
