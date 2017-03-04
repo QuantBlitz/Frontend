@@ -8,6 +8,8 @@ import IconSection from '../components/IconSection'
 import Login from './Login'
 import SignUp from './SignUp'
 
+import Logo from '../assets/logo.svg'
+
 import Style from '../styles/containers/Welcome'
 
 class Welcome extends Component {
@@ -26,7 +28,7 @@ class Welcome extends Component {
         </Modal>
         <div className='row center' styleName='logo'>
           <div className='offset-s4'>
-            <img src='https://puu.sh/usn2J/7e4c199b13.png' styleName='pic' />
+            <img src={Logo} styleName='pic' />
           </div>
         </div>
         <HeroSection onClick={() => this.refs.modal.show()} />

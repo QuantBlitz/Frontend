@@ -10,8 +10,10 @@ const Watchlist = (props) => {
   return (
     <div className='center' styleName='root'>
       { props.data.length < 1 ? <h4>Stocks You're Currently Tracking</h4> : '' }
-      <div className='row'>
+      <div className='row' styleName='list'>
+        <div className='col s12 offset-s2'>
         { props.data.map(item => <WatchlistItem key={create().value} {...item} />) }
+        </div>
       </div>
     </div>
   )

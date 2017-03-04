@@ -5,7 +5,7 @@ import Style from '../styles/atoms/WatchlistItem'
 
 const WatchlistItem = (props) => {
   return (
-    <div className='card grey lighten-4 col s4' styleName='root'>
+    <div className='card grey lighten-4 col s3' styleName='root'>
       <div className='card-content blue-grey-text text-darken-1'>
         <span styleName='symbol'>{ props.symbol }</span>
       </div>

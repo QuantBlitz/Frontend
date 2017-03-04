@@ -8,21 +8,22 @@ import NumberInput from '../atoms/NumberInput'
 import Style from '../styles/components/StockDetails'
 
 const StockDetails = (props) => {
+  const aClass = 'btn waves-effect blue-grey lighten-4'
   return (
     <div className='container'>
       <h5>{ props.Symbol } {props.Name}</h5>
-      <h6>${ formatIntCommas(props.LastPrice) } &nbsp; { formatIntCommas(props.Change) }%</h6>
+      <h6>${ formatIntCommas(+props.LastPrice) } &nbsp; { formatIntCommas(+props.Change) }%</h6>
       <NumberInput onChange={props.onChange} value={props.value} />
       <span>
-        <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
+        <a className={aClass} styleName='btn'
           onClick={() => props.onClick('buy')}>
           <i className='material-icons'>check</i>
         </a>
-        <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
+        <a className={aClass} styleName='btn'
           onClick={() => props.onClick('sell')}>
           <i className='material-icons'>close</i>
         </a>
-        <a className='btn waves-effect blue-grey lighten-4' styleName='btn'
+        <a className={aClass} styleName='btn'
           onClick={() => props.onClick('watch')}>
           <i className='material-icons'>add</i>
         </a>
