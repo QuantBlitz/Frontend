@@ -5,10 +5,10 @@
 .logo {
   height: 48px;
   position: relative;
-  transform: translateY(9%);
+  transform: translateY(13%);
   width: 48px;
   /* -webkit-filter: invert(100%); filter: invert(100%); */
-  -webkit-filter: opacity(50%); filter: opacity(50%);
+  /* -webkit-filter: opacity(50%); filter: opacity(50%); */
 }
 
 .link {

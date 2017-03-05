@@ -5,6 +5,7 @@ const initialState = {
   portfolio: [],
   watchlist: [],
   trades: [],
+  symbolHistory: [],
   quoteData: {}
 }
 
@@ -22,6 +23,10 @@ const stock = (state = initialState, action) => {
     case 'GET_STOCK_QUOTE_SUCCESS':
       return { ...state, isFetching: false, quoteData: action.payload }
     case 'GET_STOCK_QUOTE_FAIL':
+      return state
+    case 'GET_STOCK_HISTORY_SUCCESS':
+      return { ...state, symbolHistory: action.payload }
+    case 'GET_STOCK_HISTORY_FAIL':
       return state
     case 'GET_WATCHLIST_SUCCESS':
       return { ...state, watchlist: action.payload.reverse() }

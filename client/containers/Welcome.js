@@ -9,6 +9,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 
 import Logo from '../assets/logo.svg'
+import WelcomeLogo from '../assets/welcome_logo.svg'
 
 import Style from '../styles/containers/Welcome'
 
@@ -26,9 +27,9 @@ class Welcome extends Component {
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>
-        <div className='row center' styleName='logo'>
+        <div className='row center' styleName='logo-container'>
           <div className='offset-s4'>
-            <img src={Logo} styleName='pic' />
+            <img src={WelcomeLogo} styleName='logo-svg' />
           </div>
         </div>
         <HeroSection onClick={() => this.refs.modal.show()} />

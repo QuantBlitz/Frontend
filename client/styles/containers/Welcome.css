@@ -1,15 +1,18 @@
+@value Palette:  "../globals/Palette";
+@value Blue, Dark-Grey, Green, Grey, Red, White from Palette;
+
 .root {
   min-height: 85vh;
 }
 
-.logo {
+.logo-container {
   height: 50%;
   width: 50%;
 }
 
-.pic {
-  position: relative;
+.logo-svg {
   height: 20%;
+  position: relative;
   transform: translateY(50%);
   width: 20%;
 }

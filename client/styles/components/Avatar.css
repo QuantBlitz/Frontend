@@ -1,12 +1,12 @@
 @value Palette:  "../globals/Palette";
-@value Dark-Grey from Palette;
+@value Blue-Grey-Darken-2 from Palette;
 
 .root {
   margin-top: 5%;
 }
 
 .avatar {
-  border: 2px solid Dark-Grey;
+  border: 2px solid Blue-Grey-Darken-2;
   border-radius: 2px;
   cursor: pointer;
   height: 156px;

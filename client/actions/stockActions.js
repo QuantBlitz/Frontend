@@ -52,17 +52,16 @@ export const getStockQuote = (symbol) => {
   }
 }
 
-const getStockChartSuccess = (payload) => {
-  return { type: 'GET_STOCK_CHART', payload }
+const getStockHistorySuccess = (payload) => {
+  return { type: 'GET_STOCK_HISTORY_SUCCESS', payload }
 }
 
-const getStockChartFail = (error) => {
-  return { type: 'GET_STOCK_CHART', error }
+const getStockHistoryFail = (error) => {
+  return { type: 'GET_STOCK_HISTORY_FAIL', error }
 }
 
-export const getStockChart = (symbol) => {
-  const endPoint = `/v1/stock/chart/${symbol}`
-
+export const getStockHistory = (symbol, start, end) => {
+  const endPoint = `/v1/stock/history/${symbol}?start=${start}&end=${end}`
   return dispatch => {
     axios.get(endPoint, axiosConfig)
       .then(response => dispatch(getStockChartSuccess(response.data)))

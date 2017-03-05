@@ -6,7 +6,7 @@ import NavDesktop from './NavDesktop'
 import NavItem from '../atoms/NavItem'
 import NavMobile from './NavMobile'
 
-import Logo from '../assets/Logo.svg'
+import Logo from '../assets/logo.svg'
 
 import Style from '../styles/components/NavBar'
 
