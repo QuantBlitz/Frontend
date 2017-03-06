@@ -18,10 +18,10 @@ class Login extends Component {
     }
   }
   handleSubmit = (e) => {
-    const { dispatch } = this.props
+    const { loginUser } = this.props
     e.preventDefault()
 
-    dispatch(loginUser(this.state))
+    loginUser(this.state)
     this.props.close()
   }
   render() {
@@ -34,4 +34,4 @@ class Login extends Component {
   }
 }
 
-export default connect()(CSSModules(Login, Style))
+export default connect(null, { loginUser })(CSSModules(Login, Style))

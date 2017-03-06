@@ -4,6 +4,8 @@ import CSSModules from 'react-css-modules'
 
 import { getStockHistory } from '../actions/stockActions'
 
+import { formatDate } from '../utils/utils'
+
 import StockOverview from '../components/StockOverview'
 import StockChart from '../components/StockChart'
 
@@ -16,24 +18,26 @@ class Stock extends Component {
     this.state = {}
   }
   componentWillMount() {
-    const { dispatch, params } = this.props
-    dispatch(getStockHistory(params.symbol, '2017-03-01', '2017-03-04'))
+    const { getStockHistory, params } = this.props
+    const today = new Date()
+    const newDate = new Date()
+    const monthAgo = new Date(newDate.setDate(newDate.getDate() - 30))
+    getStockHistory(params.symbol, formatDate(monthAgo), formatDate(today))
   }
   render() {
-    const { params, symbolHistory } = this.props
+    const { isFetching, params, symbolHistory } = this.props
     return (
       <div className='container' styleName='root'>
-        Stock Page
         <StockOverview symbol={params.symbol} />
-        <StockChart history={symbolHistory} />
+        { isFetching ? 'LOADING HOLY FUCK' : <StockChart history={symbolHistory} /> }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { symbolHistory } = state.stock
-  return { symbolHistory }
+  const { isFetching, symbolHistory } = state.stock
+  return { isFetching, symbolHistory }
 }
 
-export default connect(mapStateToProps)(CSSModules(Stock, Style))
+export default connect(mapStateToProps, { getStockHistory })(CSSModules(Stock, Style))

@@ -21,7 +21,7 @@ class SignUp extends Component {
     }
   }
   handleSubmit = (e) => {
-    const { dispatch } = this.props
+    const { registerUser } = this.props
     e.preventDefault()
 
     if (this.state.password.length < 8) {
@@ -33,7 +33,7 @@ class SignUp extends Component {
       alert('Can\'t have any spaces in between!')
     } */
 
-    dispatch(registerUser(this.state))
+    registerUser(this.state)
 
     this.setState({
       username: '',
@@ -60,4 +60,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect()(CSSModules(SignUp, Style))
+export default connect(null, { registerUser })(CSSModules(SignUp, Style))

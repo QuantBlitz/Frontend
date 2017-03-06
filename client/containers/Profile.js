@@ -14,9 +14,9 @@ class Profile extends Component {
       loading: true
     }
   }
-  componentWillMount() {
-    const { dispatch, params } = this.props
-    dispatch(getUserProfile(params.user))
+  componentDidMount() {
+    const { getUserProfile, params } = this.props
+    getUserProfile(params.user)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
   return { profileData }
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, { getUserProfile })(Profile)

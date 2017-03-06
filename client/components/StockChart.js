@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
-import d3 from 'd3'
 
-const StockChart = (props) => {
+let StockChart = (props) => {
+  console.log(props.history)
   return (
     <div>
-      Stock Chart Here
+      <div>Stock Chart Here</div>
     </div>
   )
 }

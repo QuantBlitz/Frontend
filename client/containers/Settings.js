@@ -18,7 +18,7 @@ class Settings extends Component {
     const { username, userDetails } = this.props
     return (
       <div className='container' styleName='root'>
-        <Avatar avatarURL={'https://puu.sh/u1ct7/bf7536a019.png'} />
+        <Avatar />
         <SettingsForm onSubmit={this.handleSubmit} username={username} />
       </div>
     )

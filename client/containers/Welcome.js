@@ -20,7 +20,7 @@ class Welcome extends Component {
     this.state = {}
   }
   render() {
-    const { dispatch, loggedIn } = this.props
+    const { loggedIn } = this.props
 
     return (
       <div styleName='root'>

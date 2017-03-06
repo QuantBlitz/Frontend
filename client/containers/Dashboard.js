@@ -30,30 +30,30 @@ class Dashboard extends Component {
     }
   }
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(getUserDashboard())
+    const { getUserDashboard } = this.props
+    getUserDashboard()
   }
   handleSharesChange = (e) => {
     this.setState({ shares: e.target.value })
   }
   handleSymbolChange = (e) => {
-    const { dispatch } = this.props
+    const { clearSymbolInput, getSymbolInput } = this.props
     this.state.stockSymbol.length > 1
-    ? dispatch(getSymbolInput(e.target.value.toUpperCase()))
-    : dispatch(clearSymbolInput())
+    ? getSymbolInput(e.target.value.toUpperCase())
+    : clearSymbolInput()
     this.setState({ stockSymbol: e.target.value.toUpperCase() })
   }
   handleHover = (id = null) => {
     this.setState({ pItemID: id })
   }
   handleResultClick = (e) => {
-    const { dispatch } = this.props
+    const { clearSymbolInput, getStockQuote } = this.props
     this.setState({ stockSymbol: '' })
-    dispatch(getStockQuote(e.target.name))
-    dispatch(clearSymbolInput())
+    getStockQuote(e.target.name)
+    clearSymbolInput()
   }
   handleStockAction = (action) => {
-    const { dispatch, watchlist, quoteData } = this.props
+    const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
     const { shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
 
@@ -68,17 +68,17 @@ class Dashboard extends Component {
       price: LastPrice
     }
 
-    dispatch(stockAction(action, data))
-    dispatch(clearSymbolInput())
+    stockAction(action, data)
+    clearSymbolInput()
     this.setState({ shares: 0 })
   }
   handleSubmit = (e) => {
     const { stockSymbol } = this.state
-    const { dispatch } = this.props
+    const { getStockQuote, clearSymbolInput } = this.props
     e.preventDefault()
 
-    dispatch(getStockQuote(stockSymbol))
-    dispatch(clearSymbolInput())
+    getStockQuote(stockSymbol)
+    clearSymbolInput()
     this.setState({ stockSymbol: '' })
   }
   render() {
@@ -127,4 +127,11 @@ const mapStateToProps = (state) => {
     portfolio, watchlist, trades, quoteData }
 }
 
-export default connect(mapStateToProps)(CSSModules(Dashboard, Style))
+export default connect(mapStateToProps, {
+  clearSymbolInput,
+  getStockQuote,
+  getSymbolInput,
+  getUserDashboard,
+  logoutUser,
+  stockAction
+})(CSSModules(Dashboard, Style))

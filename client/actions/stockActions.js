@@ -64,8 +64,8 @@ export const getStockHistory = (symbol, start, end) => {
   const endPoint = `/v1/stock/history/${symbol}?start=${start}&end=${end}`
   return dispatch => {
     axios.get(endPoint, axiosConfig)
-      .then(response => dispatch(getStockChartSuccess(response.data)))
-      .catch(error => dispatch(getStockChartFail(error.data)))
+      .then(response => dispatch(getStockHistorySuccess(response.data)))
+      .catch(error => dispatch(getStockHistoryFail(error.data)))
   }
 }
 

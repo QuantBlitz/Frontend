@@ -7,9 +7,9 @@ import Style from '../styles/components/Avatar'
 
 const Avatar = (props) => {
   return (
-    <div className='row' styleName='root'>
+    <div className='row' styleName='root' onClick={props.onClick}>
       <div className='col s4 offset-s5'>
-        <img src={EmptyAvatar} styleName='avatar' />
+        <img src={props.avatarURL || EmptyAvatar} styleName='avatar' />
       </div>
     </div>
   )

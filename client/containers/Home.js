@@ -11,7 +11,7 @@ class Home extends Component {
     this.state = {}
   }
   render() {
-    const { dispatch, loggedIn } = this.props
+    const { loggedIn } = this.props
 
     return (
       <div className='container' styleName='root'>

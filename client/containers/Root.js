@@ -21,8 +21,8 @@ class Root extends Component {
     }
   }
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(userAuth())
+    const { userAuth } = this.props
+    userAuth()
   }
   handleClick = (e) => {
     this.setState({
@@ -31,9 +31,8 @@ class Root extends Component {
     this.refs.modal.show()
   }
   handleLogout = () => {
-    const { dispatch } = this.props
-
-    dispatch(logoutUser())
+    const { logoutUser } = this.props
+    logoutUser()
   }
   render() {
     const { loggedIn, username } = this.props
@@ -60,4 +59,7 @@ const mapStateToProps = (state) => {
   return { loggedIn, username }
 }
 
-export default connect(mapStateToProps)(CSSModules(Root, Style))
+export default connect(mapStateToProps, {
+  logoutUser,
+  userAuth
+})(CSSModules(Root, Style))
