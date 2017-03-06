@@ -21,9 +21,18 @@ const stock = (state = initialState, action) => {
     case 'CLEAR_SYMBOL_INPUT':
       return { ...state, inputResults: [] }
     case 'GET_STOCK_QUOTE_SUCCESS':
-      return { ...state, isFetching: false, quoteData: action.payload }
+      return {
+        ...state,
+        isFetching: false,
+        inputResults: [],
+        quoteData: action.payload
+      }
     case 'GET_STOCK_QUOTE_FAIL':
-      return state
+      return {
+        ...state,
+        inputResults: [],
+        quoteData: undefined
+      }
     case 'GET_STOCK_HISTORY_SUCCESS':
       let history = action.payload.map(s => ({
           close: +s.Close, date: s.Date, high: +s.High,

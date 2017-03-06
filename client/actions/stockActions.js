@@ -4,7 +4,7 @@ import { getUserDashboard } from './userActions'
 
 const axiosConfig = {
   baseURL: 'http://localhost:8080/',
-  // baseURL: 'http://162.243.58.89:8080/',
+  // baseURL: 'http://quantblitz.com/',
   withCredentials: true
 }
 

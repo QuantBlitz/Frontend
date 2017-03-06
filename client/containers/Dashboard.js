@@ -14,6 +14,7 @@ import PortfolioSummary from '../components/PortfolioSummary'
 import PreviousTrades from '../components/PreviousTrades'
 import StockForm from '../components/StockForm'
 import StockDetails from '../components/StockDetails'
+import StockNotFound from '../components/StockNotFound'
 import Watchlist from '../components/Watchlist'
 
 import Style from '../styles/containers/Dashboard'
@@ -50,7 +51,6 @@ class Dashboard extends Component {
     const { clearSymbolInput, getStockQuote } = this.props
     this.setState({ stockSymbol: '' })
     getStockQuote(e.target.name)
-    clearSymbolInput()
   }
   handleStockAction = (action) => {
     const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
@@ -74,11 +74,10 @@ class Dashboard extends Component {
   }
   handleSubmit = (e) => {
     const { stockSymbol } = this.state
-    const { getStockQuote, clearSymbolInput } = this.props
+    const { getStockQuote } = this.props
     e.preventDefault()
 
     getStockQuote(stockSymbol)
-    clearSymbolInput()
     this.setState({ stockSymbol: '' })
   }
   render() {
@@ -94,9 +93,8 @@ class Dashboard extends Component {
             onChange={this.handleSymbolChange} onClick={this.handleResultClick}
             results={inputResults} value={stockSymbol} />
           {
-            isFetching ? '' :
-            <StockDetails {...quoteData} onClick={(e) => this.handleStockAction(e)}
-              onChange={this.handleSharesChange} value={shares} />
+            isFetching ? '' : (quoteData.Message || !quoteData ? <StockNotFound />
+              : <StockDetails {...quoteData} onClick={this.handleStockAction} onChange={this.handleSharesChange} value={shares} />)
           }
         </div>
         <nav className='nav-extended blue-grey lighten-5' styleName='navigation'>
