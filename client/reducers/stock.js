@@ -39,9 +39,9 @@ const stock = (state = initialState, action) => {
           low: +s.Low, open: +s.Open, symbol: s.Symbol
         })
       )
-      return { ...state, isFetching: false, symbolHistory: history }
+      return { ...state, symbolHistory: history }
     case 'GET_STOCK_HISTORY_FAIL':
-      return { ...state, isFetching: false }
+      return state
     case 'GET_WATCHLIST_SUCCESS':
       return { ...state, watchlist: action.payload.reverse() }
     case 'GET_WATCHLIST_FAIL':

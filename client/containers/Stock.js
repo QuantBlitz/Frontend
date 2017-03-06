@@ -29,7 +29,7 @@ class Stock extends Component {
     return (
       <div className='container' styleName='root'>
         <StockOverview symbol={params.symbol} />
-        { isFetching ? 'LOADING HOLY FUCK' : <StockChart history={symbolHistory} /> }
+        { isFetching ? 'Loading...' : <StockChart history={symbolHistory} /> }
       </div>
     )
   }
