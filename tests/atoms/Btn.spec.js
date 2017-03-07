@@ -11,9 +11,9 @@ describe('<Btn />', () => {
     expect(wrapper.text()).to.equal('Random text')
   })
   it('should click', () => {
-    const handleButtonClick = sinon.spy()
-    const wrapper = mount(<Btn onClick={handleButtonClick} />)
+    const handleClick = sinon.spy()
+    const wrapper = mount(<Btn onClick={handleClick} />)
     wrapper.find('button').simulate('click', { preventDefault: () => {} })
-    expect(handleButtonClick.calledOnce).to.equal(true)
+    expect(handleClick.calledOnce).to.equal(true)
   })
 })
