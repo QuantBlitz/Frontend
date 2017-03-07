@@ -1,7 +1,7 @@
 import React from 'react'
 import sinon from 'sinon'
 import { expect } from 'chai'
-import { mount, shallow } from 'enzyme'
+import { mount } from 'enzyme'
 
 import Btn from '../../client/atoms/Btn'
 
