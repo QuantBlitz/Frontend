@@ -25,19 +25,19 @@ class Stock extends Component {
     getStockHistory(params.symbol, formatDate(monthAgo), formatDate(today))
   }
   render() {
-    const { isFetching, params, symbolHistory } = this.props
+    const { isFetchingChart, params, symbolHistory } = this.props
     return (
       <div className='container' styleName='root'>
         <StockOverview symbol={params.symbol} />
-        { isFetching ? 'Loading...' : <StockChart history={symbolHistory} /> }
+        { isFetchingChart ? 'Loading...' : <StockChart history={symbolHistory} /> }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isFetching, symbolHistory } = state.stock
-  return { isFetching, symbolHistory }
+  const { isFetchingChart, symbolHistory } = state.stock
+  return { isFetchingChart, symbolHistory }
 }
 
 export default connect(mapStateToProps, { getStockHistory })(CSSModules(Stock, Style))

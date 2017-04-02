@@ -3,12 +3,18 @@ import CSSModules from 'react-css-modules'
 
 import InputField from '../atoms/InputField'
 
-import Style from '../styles/components/SettingsForm'
+import Style from '../styles/components/SettingsAccount'
 
-const SettingsForm = (props) => {
+const SettingsAccount = (props) => {
   return (
     <form className='col s6 offset-s3' onSubmit={props.onSubmit} styleName='root'>
       <div className='row'>
+        <div className='col s6 offset-s3'>
+          <InputField label='Email' htmlFor='email'>
+            <input className='validate' type='email' placeholder={props.username}
+              name='email' onChange={props.onChange} />
+          </InputField>
+        </div>
         <div className='col s6 offset-s3'>
           <InputField label='Username' htmlFor='username'>
             <input className='validate' type='text' placeholder={props.username}
@@ -42,9 +48,9 @@ const SettingsForm = (props) => {
   )
 }
 
-SettingsForm.propTypes = {
+SettingsAccount.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func
 }
 
-export default CSSModules(SettingsForm, Style)
+export default CSSModules(SettingsAccount, Style)

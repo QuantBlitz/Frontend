@@ -56,19 +56,15 @@ class Dashboard extends Component {
     const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
     const { shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
+    const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
 
-    if (shares < 1 && action !== 'watch') return alert('Must buy/sell at least one share')
+    if (shares < 1 && action !== 'watch')
+      return alert('Must buy/sell at least one share')
 
-    if (action === 'watch' && checkSymbolDuplicates(Symbol, watchlist)) return alert('You already have this on your watchlist!')
+    if (action === 'watch' && isDuplicate)
+      return alert('You already have this on your watchlist!')
 
-    const data = {
-      shares,
-      company: Name,
-      symbol: Symbol,
-      price: LastPrice
-    }
-
-    stockAction(action, data)
+    stockAction(action, { shares, company: Name, symbol: Symbol })
     clearSymbolInput()
     this.setState({ shares: 0 })
   }

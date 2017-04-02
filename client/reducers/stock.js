@@ -1,5 +1,6 @@
 const initialState = {
   isFetching: true,
+  isFetchingChart: true,
   tradeCount: 0,
   inputResults: [],
   portfolio: [],
@@ -39,9 +40,17 @@ const stock = (state = initialState, action) => {
           low: +s.Low, open: +s.Open, symbol: s.Symbol
         })
       )
-      return { ...state, symbolHistory: history }
+      return {
+        ...state,
+        isFetchingChart: false,
+        symbolHistory: history
+      }
     case 'GET_STOCK_HISTORY_FAIL':
-      return state
+      return {
+        ...state,
+        isFetchingChart: true,
+        symbolHistory: []
+      }
     case 'GET_WATCHLIST_SUCCESS':
       return { ...state, watchlist: action.payload.reverse() }
     case 'GET_WATCHLIST_FAIL':

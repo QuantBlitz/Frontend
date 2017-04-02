@@ -29,10 +29,6 @@ class SignUp extends Component {
       return alert('Choose a password longer than 8 characters')
     }
 
-    /* if (this.state.username.match(/\s/)) {
-      alert('Can\'t have any spaces in between!')
-    } */
-
     registerUser(this.state)
 
     this.setState({

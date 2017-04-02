@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 const InputField = (props) => {
   return (
     <div className='row'>
-      <div className='input-field col s12'>
+      <div className={'input-field col ' + (props.size || 's12')}>
         { props.children }
         <label htmlFor={props.htmlFor} data-error='Not Valid' data-success='Perfect!'>
           { props.label }

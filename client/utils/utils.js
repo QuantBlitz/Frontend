@@ -11,3 +11,5 @@ export const formatDate = date => {
   const day = d < 10 ? `0${d}` : `${d}`
   return `${date.getFullYear()}-${month}-${day}`
 }
+
+export const validateUsername = username => username.match(/\s/g)
