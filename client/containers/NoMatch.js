@@ -24,11 +24,14 @@ class NoMatch extends Component {
       <div className='container center' styleName='root'>
         <div styleName='header'>
           <h3>You stumbled into nothingness</h3>
-          <a className='btn-large waves-effect waves-light blue-grey lighten-4 blue-grey-text text-darken-2' onClick={this.handleClick}>
+          <a className='btn-large waves-effect waves-light blue-grey lighten-4 blue-grey-text text-darken-2'
+            onClick={this.handleClick}>
             Roll Dice
           </a>
         </div>
-        <h2 styleName='dice-roll'>{ diceResult ? `You rolled a ${diceResult}!` : '' }</h2>
+        <h2 styleName='dice-roll'>
+          { diceResult ? `You rolled a ${diceResult}!` : '' }
+        </h2>
         <Link to='/'><h5>Take me back home</h5></Link>
       </div>
     )

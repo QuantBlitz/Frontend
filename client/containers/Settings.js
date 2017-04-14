@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
 import Avatar from '../components/Avatar'
-import SettingsSidebar from '../components/SettingsSidebar'
+import SettingsNavbar from '../components/SettingsNavbar'
 import SettingsAccount from '../components/SettingsAccount'
 import SettingsDetails from '../components/SettingsDetails'
 
@@ -17,10 +17,9 @@ class Settings extends Component {
       sidebarOption: 'account'
     }
   }
-  handleClick = (e) => {
-    console.log(e.target.name)
+  handleClick = (option) => {
     this.setState({
-      sidebarOption: e.target.name
+      sidebarOption: option
     })
   }
   handleSubmit = (e) => {
@@ -32,7 +31,7 @@ class Settings extends Component {
     return (
       <div className='container' styleName='root'>
         <Avatar />
-        <SettingsSidebar onClick={this.handleClick} />
+        <SettingsNavbar onClick={this.handleClick} />
         { sidebarOption == 'account' ?
           <SettingsAccount onSubmit={this.handleSubmit} username={username} /> :
           <SettingsDetails />

@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react'
+import CSSModules from 'react-css-modules'
+
+import Style from '../styles/atoms/IconBlock'
 
 const IconBlock = (props) => {
   return (
@@ -7,8 +10,10 @@ const IconBlock = (props) => {
         <h2 className='center blue-grey-text text-darken-2'>
           <i className='material-icons medium'>{ props.icon }</i>
         </h2>
-        <h5 className='center'>{ props.center_text }</h5>
-        <p className='light'>
+        <h5 className='center blue-grey-text text-darken-2'>
+          { props.center_text }
+        </h5>
+        <p className='light blue-grey-text text-darken-2' styleName='block-text'>
           { props.block_text }
         </p>
       </div>
@@ -22,4 +27,4 @@ IconBlock.propTypes = {
   center_text: PropTypes.string.isRequired
 }
 
-export default IconBlock
+export default CSSModules(IconBlock, Style)

@@ -1,7 +1,6 @@
 const initialState = {
   isFetching: true,
   isFetchingChart: true,
-  tradeCount: 0,
   inputResults: [],
   portfolio: [],
   watchlist: [],
@@ -11,7 +10,6 @@ const initialState = {
 }
 
 const stock = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case 'FETCHING_STOCK_DATA':
       return { ...state, isFetching: action.payload }

@@ -1,0 +1,20 @@
+const initialState = {
+  portfolio: {},
+  watchlist: {},
+}
+
+const dashboard = (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_USER_DASHBOARD_SUCCESS':
+      return {
+        ...state,
+        userDetails: action.payload.user,
+        portfolioData: action.payload.portfolio,
+        watchlistData: action.payload.watchlist
+      }
+    case 'GET_USER_DASHBOARD_FAIL':
+      return { ...state, isFetching: false }
+    default:
+      return state
+  }
+}

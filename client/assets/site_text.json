@@ -3,15 +3,15 @@
     {
       "icon": "equalizer",
       "center_text": "Detailed Trade Analysis",
-      "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "block_text": "Our tools and metrics will provide you a detailed analysis of your portfolio to help you craft better trades and learn from your mistakes as well as providing a detailed history of your trades."
     }, {
       "icon": "trending_up",
       "center_text": "Real-time Market Data",
-      "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "block_text": "Real-time stock data is pulled from the markets so you can execute your trades at lightning speeds and stay up to date with the latest stock prices."
     }, {
       "icon": "code",
       "center_text": "Craft Trading Algorithms",
-      "block_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "block_text": "Use our platform to craft trading algorithms that will let you compete against other users and the markets themselves. Use any programming language of your choice with our API to automate your trades."
     }
   ]
 }

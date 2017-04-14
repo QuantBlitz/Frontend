@@ -1,0 +1,14 @@
+@value Palette:  "../globals/Palette";
+@value Blue-Grey-Darken-2 from Palette;
+
+.root {
+  cursor: pointer;
+  margin-top: 5%;
+  position: relative;
+}
+
+.option {
+  border: 2px solid Blue-Grey-Darken-2;
+  border-radius: 2px;
+  margin: 5px;
+}

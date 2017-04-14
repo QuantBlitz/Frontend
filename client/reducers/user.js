@@ -6,13 +6,10 @@ const initialState = {
   username: '',
   userDetails: {},
   portfolioData: {},
-  watchlistData: {},
-  settings: {},
-  error: ''
+  watchlistData: {}
 }
 
 const user = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case 'GET_USER':
       return { profileData: action.payload }
@@ -25,7 +22,7 @@ const user = (state = initialState, action) => {
       }
     case 'REGISTER_USER_FAIL':
       window.location.assign('/')
-      return { ...state, fetchingData: false, error: action.error }
+      return { ...state, fetchingData: false }
     case 'LOGIN_USER_SUCCESS':
       return {
         ...state,
@@ -35,7 +32,7 @@ const user = (state = initialState, action) => {
       }
     case 'LOGIN_USER_FAIL':
       window.location.assign('/')
-      return { ...state, fetchingData: false, error: action.error }
+      return { ...state, fetchingData: false }
     case 'LOGOUT_USER_SUCCESS':
       window.location.assign('/')
       return {
@@ -45,7 +42,7 @@ const user = (state = initialState, action) => {
         username: ''
       }
     case 'LOGOUT_USER_FAIL':
-      return { ...state, fetchingData: false, error: action.error }
+      return { ...state, fetchingData: false }
     case 'USER_AUTH_SUCCESS':
       return { ...state, fetchingData: false, loggedIn: true }
     case 'USER_AUTH_FAIL':
