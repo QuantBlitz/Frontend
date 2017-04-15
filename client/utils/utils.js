@@ -12,4 +12,4 @@ export const formatDate = date => {
   return `${date.getFullYear()}-${month}-${day}`
 }
 
-export const validUsername = username => username.match(/^[a-zA-Z0-9]+$/)
+export const validUsername = username => username.match(/^[a-zA-Z0-9\-_]+$/)
