@@ -6,11 +6,15 @@ import InputField from '../atoms/InputField'
 import Style from '../styles/components/SignUpForm'
 
 const SignUpForm = (props) => {
+  const validUsername = props.isValidUserName ? 'valid' : 'invalid'
+  const unameClass = props.isValidUserName === null ? '' : validUsername
+  const pwClass = props.hasValidPW === null ? '' :
+    (props.hasValidPW ? 'valid' : 'invalid')
   return (
     <div className='row'>
       <form className='col s12' onSubmit={props.onSubmit}>
         <InputField label='Username' htmlFor='username'>
-          <input className='validate' type='text'
+          <input className={unameClass} type='text'
             name='username' onChange={props.onChange} />
         </InputField>
         <InputField label='Email' htmlFor='email'>
@@ -18,7 +22,7 @@ const SignUpForm = (props) => {
             name='email' onChange={props.onChange} />
         </InputField>
         <InputField label='Password' htmlFor='password'>
-          <input className='validate' type='password'
+          <input className={pwClass} type='password'
             name='password' onChange={props.onChange} />
         </InputField>
         <div className='center'>
