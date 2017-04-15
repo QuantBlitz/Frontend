@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react'
+import CSSModules from 'react-css-modules'
+
+import Style from '../styles/atoms/InputField'
 
 const InputField = (props) => {
   return (
@@ -22,4 +25,4 @@ InputField.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-export default InputField
+export default CSSModules(InputField, Style)

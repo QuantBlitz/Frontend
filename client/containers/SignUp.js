@@ -33,7 +33,7 @@ class SignUp extends Component {
       })
     } else {
       this.setState({
-        isValidUserName: username ? isValidUserName : null,
+        isValidUserName: username ? isValidUserName || true : null,
         [e.target.name]: e.target.value
       })
     }
