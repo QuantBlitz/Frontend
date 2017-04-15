@@ -24,6 +24,7 @@ class SignUp extends Component {
     }
   }
   handleChange = (e) => {
+    const { username, isValidUserName } = this.state
     if (e.target.name === 'username'
       && !validUsername(e.target.value)) {
       this.setState({
@@ -32,7 +33,7 @@ class SignUp extends Component {
       })
     } else {
       this.setState({
-        isValidUserName: this.state.username ? true : null,
+        isValidUserName: username ? isValidUserName : null,
         [e.target.name]: e.target.value
       })
     }
@@ -47,7 +48,8 @@ class SignUp extends Component {
     }
 
     if (!validUsername(this.state.username)) {
-      return alert('Username can\'t contain spaces or special characters!')
+      return alert('Username can\'t contain spaces or special'
+        + ' characters aside from `-` or `_`!')
     }
 
     registerUser(this.state)
