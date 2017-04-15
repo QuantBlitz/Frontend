@@ -12,7 +12,10 @@ const StockDetails = (props) => {
   return (
     <div className='container'>
       <h5>{ props.Symbol } {props.Name}</h5>
-      <h6>${ formatIntCommas(+props.LastPrice) } &nbsp; { formatIntCommas(+props.Change) }%</h6>
+      <h6>
+        ${ formatIntCommas(+props.LastTradePriceOnly) } &nbsp;
+        { props.Change }%
+      </h6>
       <NumberInput onChange={props.onChange} value={props.value} />
       <span>
         <a className={aClass} styleName='btn'
@@ -33,8 +36,8 @@ const StockDetails = (props) => {
 }
 
 StockDetails.propTypes = {
-  Change: PropTypes.number.isRequired,
-  LastPrice: PropTypes.number.isRequired,
+  Change: PropTypes.string.isRequired,
+  LastTradePriceOnly: PropTypes.string.isRequired,
   Message: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   Name: PropTypes.string.isRequired,

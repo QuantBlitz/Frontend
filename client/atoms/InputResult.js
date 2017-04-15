@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react'
+import CSSModules from 'react-css-modules'
 
 import Style from '../styles/atoms/InputResult'
 
 const InputResult = (props) => {
   return (
-    <a className='collection-item blue-grey-text'
-      onClick={props.onClick} name={props.Symbol}>
-      { props.Symbol }
+    <a className='collection-item blue-grey-text' styleName='root'
+      onClick={props.onClick} name={props.symbol}>
+      { props.symbol } { props.name }
     </a>
   )
 }
 
 InputResult.propTypes = {
-  Symbol: PropTypes.string.isRequired
+  symbol: PropTypes.string.isRequired
 }
 
-export default InputResult
+export default CSSModules(InputResult, Style)

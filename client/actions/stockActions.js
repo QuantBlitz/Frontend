@@ -43,7 +43,7 @@ const getStockQuoteFail = (error) => {
 }
 
 export const getStockQuote = (symbol) => {
-  const endPoint = `/v1/stock/search/${symbol}`
+  const endPoint = `/v1/stock/quote/${symbol}`
 
   return dispatch => {
     axios.get(endPoint, axiosConfig)

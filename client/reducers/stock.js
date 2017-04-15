@@ -10,6 +10,7 @@ const initialState = {
 }
 
 const stock = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case 'FETCHING_STOCK_DATA':
       return { ...state, isFetching: action.payload }
@@ -24,7 +25,7 @@ const stock = (state = initialState, action) => {
         ...state,
         isFetching: false,
         inputResults: [],
-        quoteData: action.payload
+        quoteData: action.payload.quote
       }
     case 'GET_STOCK_QUOTE_FAIL':
       return {
