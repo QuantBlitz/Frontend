@@ -63,7 +63,10 @@ const stock = (state = initialState, action) => {
     case 'GET_PORTFOLIO_FAIL':
       return state
     case 'WATCH_STOCK_SYMBOL_SUCCESS':
-      return { ...state, isFetching: true, watchlist: action.payload }
+      return { ...state,
+        isFetching: true,
+        watchlist: action.payload
+      }
     case 'WATCH_STOCK_SYMBOL_FAIL':
       return state
     case 'BUY_STOCK_SYMBOL_SUCCESS':

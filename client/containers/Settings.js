@@ -31,7 +31,7 @@ class Settings extends Component {
     return (
       <div className='container' styleName='root'>
         <Avatar />
-        <SettingsNavbar onClick={this.handleClick} />
+        {/* <SettingsNavbar onClick={this.handleClick} /> */}
         { sidebarOption == 'account' ?
           <SettingsAccount onSubmit={this.handleSubmit} username={username} /> :
           <SettingsDetails />

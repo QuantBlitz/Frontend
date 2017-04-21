@@ -7,7 +7,7 @@ const InputResult = (props) => {
   return (
     <a className='collection-item blue-grey-text' styleName='root'
       onClick={props.onClick} name={props.symbol}>
-      { props.symbol } { props.name }
+      { props.symbol }
     </a>
   )
 }

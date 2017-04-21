@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { create } from 'guid'
+import Modal from 'boron/FlyModal'
 import CSSModules from 'react-css-modules'
 
 import { clearSymbolInput, getStockQuote, getSymbolInput, stockAction } from '../actions/stockActions'
@@ -13,6 +14,7 @@ import Portfolio from '../components/Portfolio'
 import PortfolioSummary from '../components/PortfolioSummary'
 import PreviousTrades from '../components/PreviousTrades'
 import StockForm from '../components/StockForm'
+import StockOptions from '../components/StockOptions'
 import StockDetails from '../components/StockDetails'
 import StockNotFound from '../components/StockNotFound'
 import Watchlist from '../components/Watchlist'
@@ -24,8 +26,8 @@ class Dashboard extends Component {
     super(props)
 
     this.state = {
+      stock: {},
       stockSymbol: '',
-      pItemID: null,
       shares: 0,
       view: 'portfolio'
     }
@@ -44,29 +46,39 @@ class Dashboard extends Component {
     : clearSymbolInput()
     this.setState({ stockSymbol: e.target.value.toUpperCase() })
   }
-  handleHover = (id = null) => {
-    this.setState({ pItemID: id })
+  handleStockClick = (stockID) => {
+    const { portfolio } = this.props
+    const stock = portfolio.filter(s => s.id === stockID)
+    this.setState({ stock: stock[0] })
+    this.refs.modal.show()
   }
   handleResultClick = (e) => {
     const { clearSymbolInput, getStockQuote } = this.props
     this.setState({ stockSymbol: '' })
     getStockQuote(e.target.name)
+    clearSymbolInput()
   }
   handleStockAction = (action) => {
     const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
-    const { shares } = this.state
+    const { stock, shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
     const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
+    // const stockOrder = quoteData
+    //   ? { shares, company: Name, symbol: Symbol }
+    //   : (stock ? { ...stock, shares } : {})
+    const stockOrder = stock.symbol ? { ...stock, shares } : { shares, company: Name, symbol: Symbol }
 
+    console.log(stockOrder)
     if (shares < 1 && action !== 'watch')
       return alert('Must buy/sell at least one share')
 
     if (action === 'watch' && isDuplicate)
       return alert('You already have this on your watchlist!')
 
-    stockAction(action, { shares, company: Name, symbol: Symbol })
+    stockAction(action, stockOrder)
     clearSymbolInput()
-    this.setState({ shares: 0 })
+    this.setState({ stock: {}, shares: 0, })
+    this.refs.modal.hide()
   }
   handleSubmit = (e) => {
     const { stockSymbol } = this.state
@@ -77,7 +89,7 @@ class Dashboard extends Component {
     this.setState({ stockSymbol: '' })
   }
   render() {
-    const { pItemID, stockSymbol, shares, view } = this.state
+    const { stockSymbol, shares, stock, view } = this.state
     const { isFetching, inputResults, loggedIn, portfolioData,
       portfolio, watchlist, trades, quoteData } = this.props
     const tabValues = ['trades', 'portfolio', 'watchlist']
@@ -89,7 +101,7 @@ class Dashboard extends Component {
             onChange={this.handleSymbolChange} onClick={this.handleResultClick}
             results={inputResults} value={stockSymbol} />
           {
-            isFetching ? '' : (quoteData.Message || !quoteData ? <StockNotFound />
+            isFetching && quoteData ? '' : (quoteData.Message || !quoteData ? <StockNotFound />
               : <StockDetails {...quoteData} onClick={this.handleStockAction} onChange={this.handleSharesChange} value={shares} />)
           }
         </div>
@@ -104,10 +116,15 @@ class Dashboard extends Component {
         </nav>
         {
           view === 'portfolio'
-          ? <Portfolio summary={portfolioData} data={portfolio} trades={trades.length} />
+          ? <Portfolio summary={portfolioData} data={portfolio}
+              onClick={this.handleStockClick} trades={trades.length} />
           : (view === 'trades' ? <PreviousTrades data={trades} />
           : <Watchlist data={watchlist} />)
         }
+        <Modal ref='modal'>
+          <StockOptions onClick={this.handleStockAction}
+            onChange={this.handleSharesChange} {...stock} />
+        </Modal>
       </div>
     )
   }

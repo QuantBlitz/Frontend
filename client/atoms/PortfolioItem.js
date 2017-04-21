@@ -7,22 +7,18 @@ import Style from '../styles/atoms/PortfolioItem'
 
 const PortfolioItem = (props) => {
   return (
-    <div className='card grey lighten-4 col s4' styleName='root'>
+    <div className='card grey lighten-4 col s4' styleName='root'
+        onClick={() => props.onClick(props.id)}>
       <div className='card-content blue-grey-text text-darken-1'>
         <p>{ props.symbol } ${ formatIntCommas(+props.price) }</p>
         <p>Shares: { props.shares }</p>
       </div>
-      {/* <div className='card-action center' styleName='action'>
-        <span onClick={props.onClick} styleName='icon-container'>
-          <i className='material-icons blue-grey-text text-darken-1' styleName='icon'>close</i>
-        </span>
-      </div> */}
     </div>
   )
 }
 
 PortfolioItem.propTypes = {
-  price: PropTypes.string.isRequired,
+  // price: PropTypes.string.isRequired,
   shares: PropTypes.number.isRequired,
   symbol: PropTypes.string.isRequired
 }

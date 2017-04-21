@@ -12,7 +12,10 @@ const Portfolio = (props) => {
     <div className='center' styleName='root'>
       <PortfolioSummary {...props.summary} trades={props.trades} />
       <div className='row'>
-        { props.data.map(item => <PortfolioItem key={create().value} {...item} />) }
+        { props.data.map(item =>
+            <PortfolioItem key={create().value}
+              onClick={props.onClick} {...item} />
+          ) }
       </div>
     </div>
   )
