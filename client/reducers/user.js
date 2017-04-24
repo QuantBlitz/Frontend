@@ -3,8 +3,7 @@ import { browserHistory } from 'react-router'
 const initialState = {
   fetchingData: true,
   loggedIn: false,
-  username: '',
-  userDetails: {},
+  user: {},
   portfolioData: {},
   watchlistData: {}
 }
@@ -18,7 +17,7 @@ const user = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         loggedIn: true,
-        username: action.payload.username
+        user: action.payload.user
       }
     case 'REGISTER_USER_FAIL':
       window.location.assign('/')
@@ -28,7 +27,7 @@ const user = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         loggedIn: true,
-        username: action.payload.username
+        user: action.payload.user
       }
     case 'LOGIN_USER_FAIL':
       window.location.assign('/')
@@ -39,19 +38,24 @@ const user = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         loggedIn: false,
-        username: ''
+        user: {}
       }
     case 'LOGOUT_USER_FAIL':
       return { ...state, fetchingData: false }
     case 'USER_AUTH_SUCCESS':
-      return { ...state, fetchingData: false, loggedIn: true }
+      return {
+        ...state,
+        user: action.payload.user,
+        fetchingData: false,
+        loggedIn: true
+      }
     case 'USER_AUTH_FAIL':
       return { ...state, fetchingData: false, loggedIn: false }
     case 'GET_USER_DASHBOARD_SUCCESS':
       return {
         ...state,
         fetchingData: false,
-        userDetails: action.payload.user,
+        user: action.payload.user,
         portfolioData: action.payload.portfolio,
         watchlistData: action.payload.watchlist
       }

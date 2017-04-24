@@ -14,7 +14,35 @@ class Settings extends Component {
     super(props)
 
     this.state = {
-      sidebarOption: 'account'
+      sidebarOption: 'account',
+      validPassword: null,
+      password: '',
+      passwordNew: '',
+      passwordConfirm: ''
+    }
+  }
+  handleChange = (e) => {
+    const { passwordNew, passwordConfirm } = this.state
+    if (e.target.name === 'passwordConfirm') {
+      const isValid = passwordNew === e.target.value
+        ? true : (passwordConfirm  ? false : null)
+      this.setState({
+        validPassword: isValid,
+        [e.target.name]: e.target.value
+      })
+    } else {
+      if (e.target.name === 'passwordNew') {
+        const isValidPW = passwordConfirm === e.target.value
+          ? true : (passwordNew ? false : null)
+        this.setState({
+          validPassword: isValidPW,
+          [e.target.name]: e.target.value
+        })
+      } else {
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+      }
     }
   }
   handleClick = (option) => {
@@ -24,16 +52,31 @@ class Settings extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
+    const { password, passwordNew, passwordConfirm } = this.state
+
+    if (!password)
+      return alert('Must enter your current password!')
+
+    if (passwordNew !== passwordConfirm)
+      return alert('Passwords must match!')
+
+    this.setState({
+      password: '',
+      passwordNew: '',
+      passwordConfirm: ''
+    })
   }
   render() {
-    const { username, userDetails } = this.props
-    const { sidebarOption } = this.state
+    const { user } = this.props
+    const { sidebarOption, validPassword } = this.state
     return (
       <div className='container' styleName='root'>
         <Avatar />
         {/* <SettingsNavbar onClick={this.handleClick} /> */}
         { sidebarOption == 'account' ?
-          <SettingsAccount onSubmit={this.handleSubmit} username={username} /> :
+          <SettingsAccount onSubmit={this.handleSubmit}
+            onChange={this.handleChange}
+            {...this.state} {...user} /> :
           <SettingsDetails />
         }
       </div>
@@ -42,8 +85,8 @@ class Settings extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { username, userDetails } = state.user
-  return { username, userDetails }
+  const { user } = state.user
+  return { user }
 }
 
 export default connect(mapStateToProps)(CSSModules(Settings, Style))

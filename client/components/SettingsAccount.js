@@ -6,37 +6,39 @@ import InputField from '../atoms/InputField'
 import Style from '../styles/components/SettingsAccount'
 
 const SettingsAccount = (props) => {
+  const pwClass = props.validPassword === null ? '' :
+    (props.validPassword ? 'valid' : 'invalid')
   return (
     <form className='col s6 offset-s3' onSubmit={props.onSubmit} styleName='root'>
       <div className='row'>
         <div className='col s6 offset-s3'>
           <InputField label='Email' htmlFor='email'>
-            <input className='validate' type='email' placeholder={props.username}
-              name='email' onChange={props.onChange} />
+            <input className='validate' type='email' name='email' disabled
+              placeholder={props.email || ''}  onChange={props.onChange} />
           </InputField>
         </div>
         <div className='col s6 offset-s3'>
           <InputField label='Username' htmlFor='username'>
-            <input className='validate' type='text' placeholder={props.username}
-              name='input' onChange={props.onChange} />
+            <input className='validate' type='text' name='username' disabled
+              placeholder={props.username || ''} onChange={props.onChange} />
           </InputField>
         </div>
         <div className='col s6 offset-s3'>
           <InputField label='Current Password' htmlFor='password'>
-            <input className='validate' type='password'
-              name='password' onChange={props.onChange} />
+            <input className='validate' type='password' name='password'
+              onChange={props.onChange} value={props.password} />
           </InputField>
         </div>
         <div className='col s6 offset-s3'>
           <InputField label='New Password' htmlFor='password'>
-            <input className='validate' type='password'
-              name='passwordNew' onChange={props.onChange} />
+            <input className='validate' type='password' name='passwordNew'
+                onChange={props.onChange} value={props.passwordNew}/>
           </InputField>
         </div>
         <div className='col s6 offset-s3'>
           <InputField label='Confirm Password' htmlFor='password'>
-            <input className='validate' type='password'
-              name='passwordConfirm' onChange={props.onChange} />
+            <input className={pwClass} type='password' name='passwordConfirm'
+              onChange={props.onChange} value={props.passwordConfirm} />
           </InputField>
         </div>
       </div>
