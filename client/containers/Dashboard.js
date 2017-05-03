@@ -63,12 +63,8 @@ class Dashboard extends Component {
     const { stock, shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
     const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
-    // const stockOrder = quoteData
-    //   ? { shares, company: Name, symbol: Symbol }
-    //   : (stock ? { ...stock, shares } : {})
     const stockOrder = stock.symbol ? { ...stock, shares } : { shares, company: Name, symbol: Symbol }
 
-    console.log(stockOrder)
     if (shares < 1 && action !== 'watch')
       return alert('Must buy/sell at least one share')
 
