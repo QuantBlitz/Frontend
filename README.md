@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/RecursiveLogic/Market-Data.png?label=ready&title=Ready)](https://waffle.io/RecursiveLogic/Market-Data)
 
-# Market Data
+# QuantBlitz
 
 ## Front-End Development Environment Setup
 
