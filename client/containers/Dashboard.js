@@ -58,6 +58,18 @@ class Dashboard extends Component {
     getStockQuote(e.target.name)
     clearSymbolInput()
   }
+  handleSubmit = (e) => {
+    const { stockSymbol } = this.state
+    const { getStockQuote } = this.props
+    e.preventDefault()
+
+    getStockQuote(stockSymbol)
+    this.setState({
+      stockSymbol: '',
+      stock: {},
+      shares: 0
+    })
+  }
   handleStockAction = (action) => {
     const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
     const { stock, shares } = this.state
@@ -75,14 +87,6 @@ class Dashboard extends Component {
     clearSymbolInput()
     this.setState({ stock: {}, shares: 0, })
     this.refs.modal.hide()
-  }
-  handleSubmit = (e) => {
-    const { stockSymbol } = this.state
-    const { getStockQuote } = this.props
-    e.preventDefault()
-
-    getStockQuote(stockSymbol)
-    this.setState({ stockSymbol: '' })
   }
   render() {
     const { stockSymbol, shares, stock, view } = this.state
