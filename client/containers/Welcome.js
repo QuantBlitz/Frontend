@@ -7,7 +7,7 @@ import { getLatestTrades } from '../actions/stockActions'
 
 import HeroSection from '../components/HeroSection'
 import IconSection from '../components/IconSection'
-import BuySellEvents from '../components/BuySellEvents'
+import LiveTrades from '../components/LiveTrades'
 import Login from './Login'
 import SignUp from './SignUp'
 
@@ -39,11 +39,15 @@ class Welcome extends Component {
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>
-        <div className='row' styleName='hero-container'>
-          <img src={WelcomeLogo} styleName='logo-svg' />
+        <div className='row center' styleName='hero-container'>
+          <div className='col s9'>
+            <div className='row'>
+              <img src={WelcomeLogo} styleName='logo-svg' />
+            </div>
+            <HeroSection onClick={() => this.refs.modal.show()} />
+          </div>
+          <LiveTrades trades={latestTrades} />
         </div>
-        <HeroSection onClick={() => this.refs.modal.show()} />
-        <BuySellEvents transactions={latestTrades} />
         <IconSection />
       </div>
     )

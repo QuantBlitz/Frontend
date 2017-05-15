@@ -19,6 +19,7 @@ const HeroSection = (props) => {
             Start Trading
           </a>
         </div>
+        <br />
       </div>
     </div>
   )

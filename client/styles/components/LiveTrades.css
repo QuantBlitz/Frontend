@@ -1,0 +1,13 @@
+@value Palette: "../globals/Palette";
+@value Blue-Grey-Darken-2 from Palette;
+
+.root {
+  margin-top: 4rem;
+}
+
+.header {
+  color: Blue-Grey-Darken-2;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-right: 4rem;
+}
