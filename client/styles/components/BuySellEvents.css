@@ -1,0 +1,9 @@
+.root {
+  margin-left: 30rem;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  max-width: 400px;
+  text-align: center;
+  transform: translate(95%, -120%);
+  width: 90%;
+}

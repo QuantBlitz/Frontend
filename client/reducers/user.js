@@ -51,15 +51,14 @@ const user = (state = initialState, action) => {
       }
     case 'USER_AUTH_FAIL':
       return { ...state, fetchingData: false, loggedIn: false }
-    case 'GET_USER_DASHBOARD_SUCCESS':
+    case 'GET_DASHBOARD_SUCCESS':
       return {
         ...state,
         fetchingData: false,
-        user: action.payload.user,
         portfolioData: action.payload.portfolio,
         watchlistData: action.payload.watchlist
       }
-    case 'GET_USER_DASHBOARD_FAIL':
+    case 'GET_DASHBOARD_FAIL':
       return { ...state, fetchingData: false, loggedIn: false }
     default:
       return state

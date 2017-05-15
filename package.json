@@ -16,6 +16,7 @@
     "classnames": "^2.2.4",
     "d3": "^4.3.0",
     "guid": "0.0.12",
+    "prop-types": "^15.5.9",
     "react": "^15.1.0",
     "react-css-modules": "^3.7.6",
     "react-dom": "^15.1.0",

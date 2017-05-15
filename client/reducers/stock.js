@@ -2,6 +2,7 @@ const initialState = {
   isFetching: true,
   isFetchingChart: true,
   inputResults: [],
+  latestTrades: [],
   portfolio: [],
   watchlist: [],
   trades: [],
@@ -19,6 +20,13 @@ const stock = (state = initialState, action) => {
       return state
     case 'CLEAR_SYMBOL_INPUT':
       return { ...state, inputResults: [] }
+    case 'GET_LATEST_TRADES_SUCCESS':
+      return {
+        ...state,
+        latestTrades: JSON.parse(action.payload)
+      }
+    case 'GET_LATEST_TRADES_FAIL':
+      return state
     case 'GET_STOCK_QUOTE_SUCCESS':
       return {
         ...state,
@@ -50,19 +58,20 @@ const stock = (state = initialState, action) => {
         symbolHistory: []
       }
     case 'GET_WATCHLIST_SUCCESS':
-      return { ...state, watchlist: action.payload.reverse() }
+      return { ...state, watchlist: action.payload }
     case 'GET_WATCHLIST_FAIL':
       return state
     case 'GET_PORTFOLIO_SUCCESS':
       return {
         ...state,
-        portfolio: action.payload.portfolio.sort((a, b) => a.id < b.id),
-        trades: action.payload.trades.sort((a, b) => a.id < b.id)
+        portfolio: action.payload.portfolio,
+        trades: action.payload.trades
       }
     case 'GET_PORTFOLIO_FAIL':
       return state
     case 'WATCH_STOCK_SYMBOL_SUCCESS':
-      return { ...state,
+      return {
+        ...state,
         isFetching: true,
         watchlist: action.payload
       }
@@ -72,8 +81,8 @@ const stock = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        portfolio: action.payload.portfolio.sort((a, b) => a.id < b.id),
-        trades: action.payload.trades.sort((a, b) => a.id < b.id)
+        portfolio: action.payload.portfolio,
+        trades: action.payload.trades
       }
     case 'BUY_STOCK_SYMBOL_FAIL':
       return state
@@ -81,8 +90,8 @@ const stock = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        portfolio: action.payload.portfolio.sort((a, b) => a.id < b.id),
-        trades: action.payload.trades.sort((a, b) => a.id < b.id)
+        portfolio: action.payload.portfolio,
+        trades: action.payload.trades
       }
     case 'SELL_STOCK_SYMBOL_FAIL':
       return state

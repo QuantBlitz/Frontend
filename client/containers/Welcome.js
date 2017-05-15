@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 import Modal from 'boron/FlyModal'
 import CSSModules from 'react-css-modules'
 
+import { getLatestTrades } from '../actions/stockActions'
+
 import HeroSection from '../components/HeroSection'
 import IconSection from '../components/IconSection'
+import BuySellEvents from '../components/BuySellEvents'
 import Login from './Login'
 import SignUp from './SignUp'
 
@@ -13,26 +16,34 @@ import WelcomeLogo from '../assets/welcome_logo.svg'
 
 import Style from '../styles/containers/Welcome'
 
+const ws = new WebSocket('ws://localhost:4040/')
+
 class Welcome extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {}
+  }
+  componentDidMount() {
+    const { getLatestTrades } = this.props
+    ws.onmessage = (event) => {
+      getLatestTrades(event.data)
+    }
+  }
+  componentWillUnmount() {
+    ws.close()
   }
   render() {
-    const { loggedIn } = this.props
+    const { loggedIn, latestTrades } = this.props
 
     return (
       <div styleName='root'>
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>
-        <div className='row center' styleName='logo-container'>
-          <div className='offset-s4'>
-            <img src={WelcomeLogo} styleName='logo-svg' />
-          </div>
+        <div className='row' styleName='hero-container'>
+          <img src={WelcomeLogo} styleName='logo-svg' />
         </div>
         <HeroSection onClick={() => this.refs.modal.show()} />
+        <BuySellEvents transactions={latestTrades} />
         <IconSection />
       </div>
     )
@@ -41,7 +52,10 @@ class Welcome extends Component {
 
 const mapStateToProps = (state) => {
   const { loggedIn } = state.user
-  return { loggedIn }
+  const { latestTrades } = state.stock
+  return { loggedIn, latestTrades }
 }
 
-export default connect(mapStateToProps)(CSSModules(Welcome, Style))
+export default connect(mapStateToProps, {
+  getLatestTrades
+})(CSSModules(Welcome, Style))

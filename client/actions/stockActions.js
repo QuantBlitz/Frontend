@@ -34,6 +34,10 @@ export const clearSymbolInput = () => {
   return { type: 'CLEAR_SYMBOL_INPUT' }
 }
 
+export const getLatestTrades = (payload) => {
+  return { type: 'GET_LATEST_TRADES_SUCCESS', payload }
+}
+
 const getStockQuoteSuccess = (payload) => {
   return { type: 'GET_STOCK_QUOTE_SUCCESS', payload }
 }

@@ -7,6 +7,7 @@ const NavLoggedIn = (props) => {
   return (
     <div>
       {/* <NavItem to='/symbol/AAPL' text='Stock' /> */}
+      <NavItem to='/profile' text='Profile' />      
       <NavItem to='/settings' text='Settings' />
       <li>
         <a onClick={props.onClick}><i className='material-icons'>power_settings_new</i></a>

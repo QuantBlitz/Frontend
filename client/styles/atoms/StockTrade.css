@@ -1,0 +1,76 @@
+@value Palette: "../globals/Palette";
+@value Blue-Grey-Darken-2, Light-Grey, Red, Green from Palette;
+
+.root {
+  color: Blue-Grey-Darken-2;
+  cursor: pointer;
+  height: 5vh;
+  margin-bottom: 1.5rem;
+  margin-top: .5rem;
+  padding: 1rem;
+  width: 20vw;
+
+  &:hover {
+    background-color: Light-Grey;
+  }
+}
+
+.stock {
+  font-size: .62rem;
+  text-align: right;
+  margin-top: .5rem;
+  margin-bottom: 1.7rem;
+  padding-left: 1rem;
+}
+
+.symbol {
+  composes: stock;
+  display: inline-block;
+  margin-right: .2rem;
+
+  &:after {
+    content: '•';
+    display: inline-block;
+    margin-left: .2rem;
+    opacity: .21;
+  }
+}
+
+.icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  margin-right: .3rem;
+}
+
+.type {
+  display: inline-block;
+  width: 3em;
+}
+
+.buy {
+  composes: icon;
+  color: Green;
+}
+
+.buy-amount {
+  font-size: .62rem;
+  text-align: right;
+  color: rgba(black, 0.7);
+  margin-top: .5rem;
+  margin-bottom: 1.7rem;
+  color: #233423;
+}
+
+.sell {
+  composes: type;
+  color: Red;
+}
+
+.sell-amount {
+  font-size: .62rem;
+  text-align: right;
+  color: rgba(black, 0.7);
+  margin-top: .5rem;
+  margin-bottom: 1.7rem;
+  color: #342323;
+}

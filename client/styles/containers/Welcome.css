@@ -2,11 +2,11 @@
 @value Blue, Dark-Grey, Green, Grey, Red, White from Palette;
 
 .root {
-  min-height: 85vh;
+  /*min-height: 85vh;*/
 }
 
-.logo-container {
-  height: 50%;
+.hero-container {
+  margin-left: 25%;
   width: 50%;
 }
 

@@ -32,7 +32,7 @@ class Dashboard extends Component {
       view: 'portfolio'
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     const { getUserDashboard } = this.props
     getUserDashboard()
   }
@@ -41,7 +41,7 @@ class Dashboard extends Component {
   }
   handleSymbolChange = (e) => {
     const { clearSymbolInput, getSymbolInput } = this.props
-    this.state.stockSymbol.length > 1
+    this.state.stockSymbol.length > 0
     ? getSymbolInput(e.target.value.toUpperCase())
     : clearSymbolInput()
     this.setState({ stockSymbol: e.target.value.toUpperCase() })
@@ -75,15 +75,18 @@ class Dashboard extends Component {
     const { stock, shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
     const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
-    const stockOrder = stock.symbol ? { ...stock, shares } : { shares, company: Name, symbol: Symbol }
+    let stockOrder = stock.symbol ? { ...stock, shares } : { shares, company: Name, symbol: Symbol }
 
-    if (shares < 1 && action !== 'watch')
+    if (shares < 1 && action !== 'watch' && action !== 'sell_all')
       return alert('Must buy/sell at least one share')
 
     if (action === 'watch' && isDuplicate)
       return alert('You already have this on your watchlist!')
 
-    stockAction(action, stockOrder)
+    if (action === 'sell_all')
+      stockOrder = { ...stockOrder, shares: this.state.stock.shares }
+
+    stockAction(action !== 'sell_all' ? action : 'sell', stockOrder)
     clearSymbolInput()
     this.setState({ stock: {}, shares: 0, })
     this.refs.modal.hide()

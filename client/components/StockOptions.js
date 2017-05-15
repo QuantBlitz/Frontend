@@ -28,6 +28,10 @@ const StockOptions = (props) => {
           onClick={() => props.onClick('sell')}>
           <i className='material-icons'>close</i>
         </a>
+        <a className={aClass} styleName='btn'
+          onClick={() => props.onClick('sell_all')}>
+          <i className='material-icons'>block</i>
+        </a>
       </span>
     </div>
   )

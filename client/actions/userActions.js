@@ -100,11 +100,11 @@ export const userAuth = () => {
 }
 
 const getUserDashboardSuccess = (payload) => {
-  return { type: 'GET_USER_DASHBOARD_SUCCESS', payload }
+  return { type: 'GET_DASHBOARD_SUCCESS', payload }
 }
 
 const getUserDashboardFail = (error) => {
-  return { type: 'GET_USER_DASHBOARD_FAIL', error }
+  return { type: 'GET_DASHBOARD_FAIL', error }
 }
 
 export const getUserDashboard = () => {
