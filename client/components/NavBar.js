@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import React from 'react'
+import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
+import { Link } from 'react-router'
 
 import NavDesktop from './NavDesktop'
 import NavItem from '../atoms/NavItem'

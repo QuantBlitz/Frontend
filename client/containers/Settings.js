@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
-import Avatar from '../components/Avatar'
+import Avatar from '../atoms/Avatar'
 import SettingsNavbar from '../components/SettingsNavbar'
 import SettingsAccount from '../components/SettingsAccount'
 import SettingsDetails from '../components/SettingsDetails'

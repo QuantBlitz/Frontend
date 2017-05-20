@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
 
 import EmptyAvatar from '../assets/empty_avatar.svg'
 
-import Style from '../styles/components/Avatar'
+import Style from '../styles/atoms/Avatar'
 
 const Avatar = (props) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
-import { create } from 'guid'
 import CSSModules from 'react-css-modules'
+import { create } from 'guid'
 
 import PortfolioItem from '../atoms/PortfolioItem'
 import PortfolioSummary from './PortfolioSummary'

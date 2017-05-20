@@ -1,0 +1,6 @@
+@value Palette: "../globals/Palette";
+@value White from Palette;
+
+.card {
+  background-color: White;
+}

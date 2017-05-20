@@ -24,9 +24,7 @@ class Welcome extends Component {
   }
   componentDidMount() {
     const { getLatestTrades } = this.props
-    ws.onmessage = (event) => {
-      getLatestTrades(event.data)
-    }
+    ws.onmessage = (event) => getLatestTrades(event.data)
   }
   componentWillUnmount() {
     ws.close()

@@ -1,5 +1,6 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
+import { create } from 'guid'
 
 import Style from '../styles/atoms/Loader'
 
@@ -8,7 +9,13 @@ const Loader = (props) => {
 
   return (
     <div styleName='loader'>
-      { segments.map(seg => <div styleName='segment-holder'><div styleName={seg} /></div>) }
+      {
+        segments.map(seg =>
+          <div key={create().value} styleName='segment-holder'>
+            <div styleName={seg} />
+          </div>
+        )
+      }
     </div>
   )
 }

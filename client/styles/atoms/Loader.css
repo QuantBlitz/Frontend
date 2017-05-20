@@ -7,8 +7,7 @@
   box-sizing: border-box;
   height: 115px;
   line-height: 0;
-  margin: 0 auto;
-  margin-top: 40vh;
+  margin: auto;
   padding: 25px;
   transform: rotate(-45deg);
   width: 115px;

@@ -1,0 +1,10 @@
+@value Palette: "../globals/Palette";
+@value White from Palette;
+
+.root {
+  margin-top: 3%;
+}
+
+.card {
+  background-color: White;
+}

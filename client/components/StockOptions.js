@@ -1,5 +1,8 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
+
+import { formatIntCommas } from '../utils/utils'
 
 import Btn from '../atoms/Btn'
 import NumberInput from '../atoms/NumberInput'
@@ -15,7 +18,7 @@ const StockOptions = (props) => {
         <h4>{ props.company }</h4>
         <h5>{ props.symbol }</h5>
         <p>{ props.shares } Shares</p>
-        <p>Bought At: ${ props.price }</p>
+        <p>Bought At: ${ formatIntCommas(+props.price) }</p>
         <p>Current Price: ${ placeholder }</p>
       </div>
       <NumberInput onChange={props.onChange} />

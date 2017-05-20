@@ -6,7 +6,8 @@ import { getUserProfile } from '../actions/userActions'
 import { getPortfolio } from '../actions/stockActions'
 
 import Loader from '../atoms/Loader'
-import Avatar from '../components/Avatar'
+import ProfileHeader from '../components/ProfileHeader'
+import ProfileBody from '../components/ProfileBody'
 import ProfileTrades from '../components/ProfileTrades'
 
 import Style from '../styles/containers/Profile'
@@ -36,10 +37,8 @@ class Profile extends Component {
 
     return (
       <div className='container' styleName='root'>
-        <Avatar className='col s4' />
-        <h4>{ user.username }</h4>
-        {/* <ProfileTrades trades={trades} /> */}
-        {/* { loading ? <Loader /> : <img src={profileData.avatar} />} */}
+        <ProfileHeader username={user.username || ''} />
+        <ProfileBody trades={trades} />
       </div>
     )
   }
