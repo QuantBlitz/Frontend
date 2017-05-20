@@ -43,7 +43,7 @@ class Dashboard extends Component {
   handleSymbolChange = (e) => {
     const { clearSymbolInput, getSymbolInput } = this.props
     const symbol = e.target.value.toUpperCase()
-    symbol.length > 0 ? getSymbolInput(symbol) : clearSymbolInput()
+    e.target.value.length > 1 ? getSymbolInput(symbol) : clearSymbolInput()
     this.setState({ stockSymbol: symbol })
   }
   handleStockClick = (stockID) => {
