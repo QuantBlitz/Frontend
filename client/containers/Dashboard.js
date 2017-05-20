@@ -42,14 +42,13 @@ class Dashboard extends Component {
   }
   handleSymbolChange = (e) => {
     const { clearSymbolInput, getSymbolInput } = this.props
-    this.state.stockSymbol.length > 0
-    ? getSymbolInput(e.target.value.toUpperCase())
-    : clearSymbolInput()
-    this.setState({ stockSymbol: e.target.value.toUpperCase() })
+    const symbol = e.target.value.toUpperCase()
+    symbol.length > 0 ? getSymbolInput(symbol) : clearSymbolInput()
+    this.setState({ stockSymbol: symbol })
   }
   handleStockClick = (stockID) => {
-    const { portfolio } = this.props
-    const stock = portfolio.filter(s => s.id === stockID)
+    const { stocks } = this.props
+    const stock = stocks.filter(s => s.id === stockID)
     this.setState({ stock: stock[0] })
     this.refs.modal.show()
   }
