@@ -6,37 +6,27 @@ const axiosConfig = {
   withCredentials: true
 }
 
-const getWatchListSuccess = (payload) => {
-  return { type: 'GET_WATCHLIST_SUCCESS', payload }
-}
-
-const getWatchListFail = (error) => {
-  return { type: 'GET_WATCHLIST_FAIL', error }
-}
+const watchListSuccess = payload => ({ type: 'GET_WATCHLIST_SUCCESS', payload })
+const watchListFail = error => ({ type: 'GET_WATCHLIST_FAIL', error })
 
 export const getWatchList = () => {
   const endPoint = '/v1/stock/watchlist'
   return dispatch => {
     axios.get(endPoint, axiosConfig)
-      .then(response => dispatch(getWatchListSuccess(response.data)))
-      .catch(error => dispatch(getWatchListFail(error.data)))
+      .then(response => dispatch(watchListSuccess(response.data)))
+      .catch(error => dispatch(watchListFail(error.data)))
   }
 }
 
-const getPortfolioSuccess = (payload) => {
-  return { type: 'GET_PORTFOLIO_SUCCESS', payload }
-}
-
-const getPortfolioFail = (error) => {
-  return { type: 'GET_PORTFOLIO_FAIL', error }
-}
+const portfolioSuccess = payload => ({ type: 'GET_PORTFOLIO_SUCCESS', payload })
+const portfolioFail = error => ({ type: 'GET_PORTFOLIO_FAIL', error })
 
 export const getPortfolio = () => {
   const endPoint = '/v1/stock/portfolio'
   return dispatch => {
     axios.get(endPoint, axiosConfig)
-      .then(response => dispatch(getPortfolioSuccess(response.data)))
-      .catch(error => dispatch(getPortfolioFail(error.data)))
+      .then(response => dispatch(portfolioSuccess(response.data)))
+      .catch(error => dispatch(portfolioFail(error.data)))
   }
 }
 

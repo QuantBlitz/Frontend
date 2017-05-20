@@ -13,7 +13,7 @@ const ProfileBody = (props) => {
       <div className='card-panel' styleName='card'>
         { props.trades.slice(0, 5).map(stock =>
           <StockTrade key={create().value} {...stock} />) }
-        <Loader />
+        {/* <Loader /> */}
       </div>
     </div>
   )

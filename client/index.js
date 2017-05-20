@@ -29,8 +29,8 @@ ReactDOM.render(
         <Route path='/settings' component={Settings} />
         <Route path='/home' component={Home} />
         <Route path='/profile' component={Profile} />        
-        <Route path='/symbol/:symbol' component={Stock} />
-        <Route path='/user/:user' component={Profile} />
+        <Route path='/s/:symbol' component={Stock} />
+        <Route path='/u/:user' component={Profile} />
         <Route path='*' component={NoMatch} />
       </Route>
     </Router>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { getPortfolio, getWatchList } from './stockActions'
+import { getPortfolio, getWatchList } from './portfolioActions'
 
 const axiosConfig = {
   baseURL: 'http://localhost:8080/',
@@ -8,13 +8,8 @@ const axiosConfig = {
   withCredentials: true
 }
 
-const userProfileSuccess = (payload) => {
-  return { type: 'GET_USER', payload }
-}
-
-const userProfileFail = (error) => {
-  return { type: 'GET_USER', error }
-}
+const userProfileSuccess = payload => ({ type: 'GET_USER_SUCCESS', payload })
+const userProfileFail = error => ({ type: 'GET_USER_FAIL', error })
 
 export const getUserProfile = (username) => {
   const endPoint = `/v1/user/${username}`
@@ -26,13 +21,8 @@ export const getUserProfile = (username) => {
   }
 }
 
-const registerUserSuccess = (payload) => {
-  return { type: 'REGISTER_USER_SUCCESS', payload }
-}
-
-const registerUserFail = (error) => {
-  return { type: 'REGISTER_USER_FAIL', error }
-}
+const registerUserSuccess = payload => ({ type: 'REGISTER_USER_SUCCESS', payload })
+const registerUserFail = error => ({ type: 'REGISTER_USER_FAIL', error })
 
 export const registerUser = (userData) => {
   const endPoint = '/v1/user/register'
@@ -44,13 +34,8 @@ export const registerUser = (userData) => {
   }
 }
 
-const loginUserSuccess = (payload) => {
-  return { type: 'LOGIN_USER_SUCCESS', payload }
-}
-
-const loginUserFail = (error) => {
-  return { type: 'LOGIN_USER_FAIL', error }
-}
+const loginUserSuccess = payload => ({ type: 'LOGIN_USER_SUCCESS', payload })
+const loginUserFail = error => ({ type: 'LOGIN_USER_FAIL', error })
 
 export const loginUser = (userData) => {
   const endPoint = '/v1/user/login'
@@ -62,13 +47,8 @@ export const loginUser = (userData) => {
   }
 }
 
-const logoutUserSuccess = (payload) => {
-  return { type: 'LOGOUT_USER_SUCCESS', payload }
-}
-
-const logoutUserFail = (error) => {
-  return { type: 'LOGOUT_USER_FAIL', error }
-}
+const logoutUserSuccess = payload => ({ type: 'LOGOUT_USER_SUCCESS', payload })
+const logoutUserFail = error => ({ type: 'LOGOUT_USER_FAIL', error })
 
 export const logoutUser = () => {
   const endPoint = '/v1/user/logout'
@@ -82,13 +62,8 @@ export const logoutUser = () => {
   }
 }
 
-const userAuthSuccess = (payload) => {
-  return { type: 'USER_AUTH_SUCCESS', payload }
-}
-
-const userAuthFail = (error) => {
-  return { type: 'USER_AUTH_FAIL', error }
-}
+const userAuthSuccess = payload => ({ type: 'USER_AUTH_SUCCESS', payload })
+const userAuthFail = error => ({ type: 'USER_AUTH_FAIL', error })
 
 export const userAuth = () => {
   const endPoint = '/v1/'
@@ -99,22 +74,17 @@ export const userAuth = () => {
   }
 }
 
-const getUserDashboardSuccess = (payload) => {
-  return { type: 'GET_DASHBOARD_SUCCESS', payload }
-}
-
-const getUserDashboardFail = (error) => {
-  return { type: 'GET_DASHBOARD_FAIL', error }
-}
+const userDashboardSuccess = payload => ({ type: 'GET_DASHBOARD_SUCCESS', payload })
+const userDashboardFail = error => ({ type: 'GET_DASHBOARD_FAIL', error })
 
 export const getUserDashboard = () => {
   const endPoint = `/v1/user/dashboard`
 
   return dispatch => {
     axios.get(endPoint, axiosConfig)
-      .then(response => dispatch(getUserDashboardSuccess(response.data)))
+      .then(response => dispatch(userDashboardSuccess(response.data)))
       .then(() => dispatch(getPortfolio()))
       .then(() => dispatch(getWatchList()))
-      .catch(error => dispatch(getUserDashboardFail(error.data)))
+      .catch(error => dispatch(userDashboardFail(error.data)))
   }
 }

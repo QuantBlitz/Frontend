@@ -9,8 +9,8 @@ const ProfileHeader = (props) => {
   return (
     <div className='row' styleName='root'>
       <div className='card-panel' styleName='card'>
-        <Avatar className='col s4 offset-s1' />
-        {/* <h4 className='col s2 offset-s3'>{ props.username }</h4> */}
+        <Avatar className='col s4' />
+        {/* <h4 className='col s2 offset-s3'>{ props.username || '' }</h4> */}
       </div>
     </div>
   )

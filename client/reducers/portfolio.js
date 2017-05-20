@@ -8,16 +8,13 @@ const initialState = {
 const portfolio = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_WATCHLIST_SUCCESS':
-      return {
-        ...state,
-        watchlist: action.payload
-      }
+      return { ...state, watchlist: action.payload }
     case 'GET_WATCHLIST_FAIL':
       return state
     case 'GET_PORTFOLIO_SUCCESS':
       return {
         ...state,
-        portfolio: action.payload.portfolio,
+        stocks: action.payload.portfolio,
         trades: action.payload.trades
       }
     case 'GET_PORTFOLIO_FAIL':
@@ -34,7 +31,7 @@ const portfolio = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        portfolio: action.payload.portfolio,
+        stocks: action.payload.portfolio,
         trades: action.payload.trades
       }
     case 'BUY_STOCK_SYMBOL_FAIL':
@@ -43,7 +40,7 @@ const portfolio = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        portfolio: action.payload.portfolio,
+        stocks: action.payload.portfolio,
         trades: action.payload.trades
       }
     case 'SELL_STOCK_SYMBOL_FAIL':

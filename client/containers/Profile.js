@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
 import { getUserProfile } from '../actions/userActions'
-import { getPortfolio } from '../actions/stockActions'
+import { getPortfolio } from '../actions/portfolioActions'
 
 import Loader from '../atoms/Loader'
 import ProfileHeader from '../components/ProfileHeader'
@@ -37,7 +37,7 @@ class Profile extends Component {
 
     return (
       <div className='container' styleName='root'>
-        <ProfileHeader username={user.username || ''} />
+        <ProfileHeader {...user} />
         <ProfileBody trades={trades} />
       </div>
     )
@@ -46,7 +46,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   const { user } = state.user
-  const { trades } = state.stock
+  const { trades } = state.portfolio
   return { user, trades }
 }
 

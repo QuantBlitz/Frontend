@@ -4,7 +4,8 @@ import { create } from 'guid'
 import Modal from 'boron/FlyModal'
 import CSSModules from 'react-css-modules'
 
-import { clearSymbolInput, getStockQuote, getSymbolInput, stockAction } from '../actions/stockActions'
+import { clearSymbolInput, getStockQuote, getSymbolInput } from '../actions/stockActions'
+import { stockAction } from '../actions/portfolioActions'
 import { getUserDashboard, logoutUser } from '../actions/userActions'
 
 import { checkSymbolDuplicates } from '../utils/utils'
@@ -94,7 +95,7 @@ class Dashboard extends Component {
   render() {
     const { stockSymbol, shares, stock, view } = this.state
     const { isFetching, inputResults, loggedIn, portfolioData,
-      portfolio, watchlist, trades, quoteData } = this.props
+      stocks, watchlist, trades, quoteData } = this.props
     const tabValues = ['trades', 'portfolio', 'watchlist']
 
     return (
@@ -119,7 +120,7 @@ class Dashboard extends Component {
         </nav>
         {
           view === 'portfolio'
-          ? <Portfolio summary={portfolioData} data={portfolio}
+          ? <Portfolio summary={portfolioData} data={stocks}
               onClick={this.handleStockClick} trades={trades.length} />
           : (view === 'trades' ? <PreviousTrades data={trades} />
           : <Watchlist data={watchlist} />)
@@ -135,10 +136,10 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   const { portfolioData, watchlistData } = state.user
-  const { isFetching, inputResults, portfolio,
-    watchlist, trades, quoteData } = state.stock
+  const { inputResults, quoteData } = state.stock
+  const { isFetching, stocks, watchlist, trades } = state.portfolio
   return { isFetching, inputResults, portfolioData, watchlistData,
-    portfolio, watchlist, trades, quoteData }
+    stocks, watchlist, trades, quoteData }
 }
 
 export default connect(mapStateToProps, {
