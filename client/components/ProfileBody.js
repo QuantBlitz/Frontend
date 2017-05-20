@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules'
 import { create } from 'guid'
 
 import Loader from '../atoms/Loader'
+import StockTrade from '../atoms/StockTrade'
 
 import Style from '../styles/components/ProfileBody'
 
