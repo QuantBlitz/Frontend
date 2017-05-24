@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const stock = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case 'FETCHING_STOCK_DATA':
       return { ...state, isFetching: action.payload }
