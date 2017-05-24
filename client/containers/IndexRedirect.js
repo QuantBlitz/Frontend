@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Dashboard from './Dashboard'
-import Home from './Home'
 import Welcome from './Welcome'
 
 class IndexRedirect extends Component {

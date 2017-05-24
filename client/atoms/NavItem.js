@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import Style from '../styles/atoms/NavItem'
 

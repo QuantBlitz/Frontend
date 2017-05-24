@@ -4,7 +4,7 @@ import { create } from 'guid'
 import Modal from 'boron/FlyModal'
 import CSSModules from 'react-css-modules'
 
-import { clearSymbolInput, getStockQuote, getSymbolInput } from '../actions/stockActions'
+import { clearSymbolInput, clearQuoteData, getStockQuote, getSymbolInput } from '../actions/stockActions'
 import { stockAction } from '../actions/portfolioActions'
 import { getUserDashboard, logoutUser } from '../actions/userActions'
 
@@ -43,7 +43,8 @@ class Dashboard extends Component {
   handleSymbolChange = (e) => {
     const { clearSymbolInput, getSymbolInput } = this.props
     const symbol = e.target.value.toUpperCase()
-    e.target.value.length > 1 ? getSymbolInput(symbol) : clearSymbolInput()
+    e.target.value.length < 2 || this.state.stockSymbol < 2
+    ? clearSymbolInput() : getSymbolInput(symbol)
     this.setState({ stockSymbol: symbol })
   }
   handleStockClick = (stockID) => {
@@ -71,7 +72,7 @@ class Dashboard extends Component {
     })
   }
   handleStockAction = (action) => {
-    const { clearSymbolInput, quoteData, stockAction, watchlist } = this.props
+    const { clearSymbolInput, clearQuoteData, quoteData, stockAction, watchlist } = this.props
     const { stock, shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
     const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
@@ -88,6 +89,7 @@ class Dashboard extends Component {
 
     stockAction(action !== 'sell_all' ? action : 'sell', stockOrder)
     clearSymbolInput()
+    clearQuoteData()
     this.setState({ stock: {}, shares: 0, })
     this.refs.modal.hide()
   }
@@ -102,9 +104,9 @@ class Dashboard extends Component {
         <div className='center'>
           <StockForm onSubmit={this.handleSubmit}
             onChange={this.handleSymbolChange} onClick={this.handleResultClick}
-            results={inputResults} value={stockSymbol} />
+            results={stockSymbol < 2 ? [] : inputResults} value={stockSymbol} />
           {
-            isFetching && quoteData ? '' : (quoteData.Message || !quoteData ? <StockNotFound />
+            isFetching && quoteData ? '' : (!quoteData.Name && !quoteData ? <StockNotFound />
               : <StockDetails {...quoteData} onClick={this.handleStockAction} onChange={this.handleSharesChange} value={shares} />)
           }
         </div>
@@ -135,14 +137,15 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   const { portfolioData, watchlistData } = state.user
-  const { inputResults, quoteData } = state.stock
-  const { isFetching, stocks, watchlist, trades } = state.portfolio
+  const { isFetching, inputResults, quoteData } = state.stock
+  const { stocks, watchlist, trades } = state.portfolio
   return { isFetching, inputResults, portfolioData, watchlistData,
     stocks, watchlist, trades, quoteData }
 }
 
 export default connect(mapStateToProps, {
   clearSymbolInput,
+  clearQuoteData,
   getStockQuote,
   getSymbolInput,
   getUserDashboard,

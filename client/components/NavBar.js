@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CSSModules from 'react-css-modules'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import NavDesktop from './NavDesktop'
 import NavItem from '../atoms/NavItem'
@@ -12,7 +12,6 @@ import Logo from '../assets/logo.svg'
 import Style from '../styles/components/NavBar'
 
 const NavBar = (props) => {
-  const home = props.loggedIn ? '/home' : '/'
   return (
     <nav className='blue-grey lighten-4' role='navigation'>
       <div className='nav-wrapper container'>

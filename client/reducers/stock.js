@@ -8,13 +8,14 @@ const initialState = {
 }
 
 const stock = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case 'FETCHING_STOCK_DATA':
       return { ...state, isFetching: action.payload }
     case 'SYMBOL_INPUT_SUCCESS':
       return { ...state, inputResults: action.payload }
     case 'SYMBOL_INPUT_FAIL':
-      return state
+      return { ...state, inputResults: [] }
     case 'CLEAR_SYMBOL_INPUT':
       return { ...state, inputResults: [] }
     case 'GET_LATEST_TRADES':
@@ -24,6 +25,8 @@ const stock = (state = initialState, action) => {
       }
     case 'GET_LATEST_TRADES_FAIL':
       return state
+    case 'CLEAR_QUOTE_DATA':
+      return { ...state, isFetching: true, quoteData: {} }
     case 'GET_STOCK_QUOTE_SUCCESS':
       return {
         ...state,
@@ -35,7 +38,7 @@ const stock = (state = initialState, action) => {
       return {
         ...state,
         inputResults: [],
-        quoteData: undefined
+        quoteData: {}
       }
     case 'GET_STOCK_HISTORY_SUCCESS':
       let history = action.payload.map(s => ({

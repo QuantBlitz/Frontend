@@ -9,6 +9,7 @@ import Loader from '../atoms/Loader'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileBody from '../components/ProfileBody'
 import ProfileTrades from '../components/ProfileTrades'
+import Root from './Root'
 
 import Style from '../styles/containers/Profile'
 
@@ -36,10 +37,12 @@ class Profile extends Component {
     const { user, trades } = this.props
 
     return (
-      <div className='container' styleName='root'>
-        <ProfileHeader {...user} />
-        <ProfileBody trades={trades} />
-      </div>
+      <Root>
+        <div className='container' styleName='root'>
+          <ProfileHeader {...user} />
+          <ProfileBody trades={trades} />
+        </div>
+      </Root>
     )
   }
 }

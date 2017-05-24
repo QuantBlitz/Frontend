@@ -16,7 +16,7 @@ const WatchlistItem = (props) => {
 }
 
 WatchlistItem.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   symbol: PropTypes.string.isRequired
 }
 

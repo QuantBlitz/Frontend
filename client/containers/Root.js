@@ -5,6 +5,7 @@ import CSSModules from 'react-css-modules'
 
 import { logoutUser, userAuth } from '../actions/userActions'
 
+import IndexRedirect from './IndexRedirect'
 import Login from './Login'
 import SignUp from './SignUp'
 import NavBar from '../components/NavBar'
@@ -47,7 +48,10 @@ class Root extends Component {
             <Login close={() => this.refs.modal.hide()} /> :
             <SignUp onClick={() => this.setState({ modal: 'login' })} close={() => this.refs.modal.hide()} />) : '' }
         </Modal>
-        { this.props.children }
+        {
+          loggedIn ? (this.props.children ? this.props.children : <IndexRedirect />)
+          : <IndexRedirect />
+        }
         <Footer />
       </div>
     )

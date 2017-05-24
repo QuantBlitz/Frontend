@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+// import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import store from './store/configStore'
 
@@ -12,6 +13,7 @@ import IndexRedirect from './containers/IndexRedirect'
 import Profile from './containers/Profile'
 import Settings from './containers/Settings'
 import Stock from './containers/Stock'
+import Welcome from './containers/Welcome'
 import NoMatch from './containers/NoMatch'
 
 const authTransition = (nextState, replace, store) => {
@@ -23,17 +25,16 @@ const authTransition = (nextState, replace, store) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path='/' component={Root}>
-        <IndexRoute component={IndexRedirect} />
+    <HashRouter>
+      <Switch>
+        <Route exact path='/' component={Root} />
         <Route path='/settings' component={Settings} />
-        <Route path='/home' component={Home} />
-        <Route path='/profile' component={Profile} />        
+        <Route path='/profile' component={Profile} />
         <Route path='/s/:symbol' component={Stock} />
         <Route path='/u/:user' component={Profile} />
         <Route path='*' component={NoMatch} />
-      </Route>
-    </Router>
+      </Switch>
+    </HashRouter>
   </Provider>,
   document.getElementById('application')
 )

@@ -6,6 +6,7 @@ import Avatar from '../atoms/Avatar'
 import SettingsNavbar from '../components/SettingsNavbar'
 import SettingsAccount from '../components/SettingsAccount'
 import SettingsDetails from '../components/SettingsDetails'
+import Root from './Root'
 
 import Style from '../styles/containers/Settings'
 
@@ -70,16 +71,18 @@ class Settings extends Component {
     const { user } = this.props
     const { sidebarOption, validPassword } = this.state
     return (
-      <div className='container' styleName='root'>
-        <Avatar />
-        {/* <SettingsNavbar onClick={this.handleClick} /> */}
-        { sidebarOption == 'account' ?
-          <SettingsAccount onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-            {...this.state} {...user} /> :
-          <SettingsDetails />
-        }
-      </div>
+      <Root>
+        <div className='container' styleName='root'>
+          <Avatar />
+          {/* <SettingsNavbar onClick={this.handleClick} /> */}
+          { sidebarOption == 'account' ?
+            <SettingsAccount onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              {...this.state} {...user} /> :
+            <SettingsDetails />
+          }
+        </div>
+      </Root>
     )
   }
 }

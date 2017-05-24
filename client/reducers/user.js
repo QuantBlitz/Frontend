@@ -9,10 +9,7 @@ const initialState = {
 }
 
 const user = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
-    case 'GET_USER':
-      return { profileData: action.payload }
     case 'REGISTER_USER_SUCCESS':
       return {
         ...state,
@@ -51,7 +48,11 @@ const user = (state = initialState, action) => {
         loggedIn: true
       }
     case 'USER_AUTH_FAIL':
-      return { ...state, fetchingData: false, loggedIn: false }
+      return {
+        ...state,
+        fetchingData: false,
+        loggedIn: false
+      }
     case 'GET_DASHBOARD_SUCCESS':
       return {
         ...state,

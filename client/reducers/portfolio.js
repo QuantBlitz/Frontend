@@ -6,6 +6,7 @@ const initialState = {
 }
 
 const portfolio = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case 'GET_WATCHLIST_SUCCESS':
       return { ...state, watchlist: action.payload }
