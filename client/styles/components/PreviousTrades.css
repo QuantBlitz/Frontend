@@ -1,9 +1,4 @@
 .root {
-  height: 65vh;
-  margin-top: 2vh;
-}
-
-.list {
-  margin-left: 12.5%;
-  width: 75%;
+  min-height: 65vh;
+  margin-top: 5%;
 }

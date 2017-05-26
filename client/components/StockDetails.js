@@ -29,7 +29,7 @@ const StockDetails = (props) => {
         </a>
         <a className={aClass} styleName='btn'
           onClick={() => props.onClick('watch')}>
-          <i className='material-icons'>bookmark_border</i>
+          <i className='material-icons'>visibility</i>
         </a>
       </span>
     </div>
