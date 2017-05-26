@@ -14,8 +14,8 @@ const PreviousTrades = (props) => {
       <div className='row'>
         {
           props.data.slice(0, 12).map((item, i) =>
-          <div className='col s6'>
-            <StockTrade key={create().value} {...item} />
+          <div key={create().value} className='col s6'>
+            <StockTrade {...item} />
           </div>
           )
         }
