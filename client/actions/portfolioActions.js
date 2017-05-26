@@ -20,6 +20,13 @@ export const getWatchList = () => {
   }
 }
 
+const removeItemSuccess = payload => ({ type: 'REMOVE_WATCHLIST_ITEM_SUCCESS', payload })
+const removeItemFail = error => ({ type: 'REMOVE_WATCHLIST_ITEM_FAIL', error })
+
+export const removeWatchlistItem = (symbol) => {
+  const endPoint = '/v1/stock/watchlist/' + symbol
+}
+
 const portfolioSuccess = payload => ({ type: 'GET_PORTFOLIO_SUCCESS', payload })
 const portfolioFail = error => ({ type: 'GET_PORTFOLIO_FAIL', error })
 
