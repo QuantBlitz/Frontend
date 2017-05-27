@@ -4,11 +4,11 @@ node_modules
 *.log*
 *bundle*
 
-*.otf
-*.eot
-*.ttf
-*.woff
-*.woff2
-*.svg
-*.png
-*.jpg
+static/*.otf
+static/*.eot
+static/*.ttf
+static/*.woff
+static/*.woff2
+static/*.svg
+static/*.png
+static/*.jpg
