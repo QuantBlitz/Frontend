@@ -3,8 +3,8 @@ import axios from 'axios'
 import { getPortfolio, getWatchList } from './portfolioActions'
 
 const axiosConfig = {
-  baseURL: 'http://localhost:8080/',
-  // baseURL: 'http://quantblitz.com/',
+  // baseURL: 'http://localhost:8080/',
+  baseURL: 'http://quantblitz.com/',
   withCredentials: true
 }
 
