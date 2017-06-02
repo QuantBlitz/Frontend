@@ -34,12 +34,13 @@ class Profile extends Component {
   }
   render() {
     const { loading } = this.state
-    const { user, trades } = this.props
+    const { match, user, trades } = this.props
 
+    console.log(match)
     return (
       <Root>
         <div className='container' styleName='root'>
-          <ProfileHeader {...user} />
+          <ProfileHeader {...match.params} />
           <ProfileBody trades={trades} />
         </div>
       </Root>

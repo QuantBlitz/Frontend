@@ -1,10 +1,44 @@
 @value Palette: "../globals/Palette";
-@value White from Palette;
+@value White, Blue-Grey-Darken-2, Blue-Grey-Lighten-2, Grey-Darken-3 from Palette;
 
 .root {
   margin-top: 3%;
 }
 
 .card {
+  display: flex;
   background-color: White;
+  justify-content: space-between;
+}
+
+.uname-l {
+  color: Blue-Grey-Darken-2;
+  margin-left: 25%;
+}
+
+.uname-m {
+  color: Blue-Grey-Darken-2;
+  margin-left: 15%;
+}
+
+.uname-s {
+  color: Blue-Grey-Darken-2;
+  margin-left: 5%;
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  color: Blue-Grey-Lighten-2;
+  margin: 1% 0 1% 0;
+}
+
+.bio {
+  display: flex;
+  color: Grey-Darken-3;
+  font-size: 20px;
+  justify-content: center;
+  margin-top: 0.2rem;
+  margin-right: 5%;
+  width: 35%;
 }

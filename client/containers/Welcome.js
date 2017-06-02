@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Modal from 'boron/FlyModal'
 import CSSModules from 'react-css-modules'
+import Particles from 'react-particles-js'
+import Modal from 'boron/FlyModal'
+
+import { particles } from '../assets/particles-grab-config.json'
 
 import { getLatestTrades } from '../actions/stockActions'
 
@@ -16,7 +19,8 @@ import WelcomeLogo from '../assets/welcome_logo.svg'
 
 import Style from '../styles/containers/Welcome'
 
-const ws = new WebSocket('ws://localhost:4040/')
+// const ws = new WebSocket('ws://localhost:4040/')
+const ws = new WebSocket('ws://quantblitz.com:4040/')
 
 class Welcome extends Component {
   constructor(props) {
@@ -34,6 +38,7 @@ class Welcome extends Component {
 
     return (
       <div styleName='root'>
+        <Particles style={{ position: "absolute" }} params={{ particles }} />
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>

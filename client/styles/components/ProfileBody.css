@@ -1,6 +1,19 @@
 @value Palette: "../globals/Palette";
-@value White from Palette;
+@value White, Blue-Grey-Darken-2 from Palette;
 
 .card {
+  display: flex;
   background-color: White;
+  justify-content: space-between;
+}
+
+.image {
+  cursor: pointer;
+  height: 25rem;
+  width: 75%;
+}
+
+.trades-header {
+  color: Blue-Grey-Darken-2;
+  margin-left: 15%;
 }

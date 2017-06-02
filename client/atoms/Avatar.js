@@ -8,7 +8,7 @@ import Style from '../styles/atoms/Avatar'
 
 const Avatar = (props) => {
   return (
-    <div className='row' styleName='root' onClick={props.onClick}>
+    <div styleName='root' onClick={props.onClick}>
       <div className={props.className || 'col s4 offset-s5'}>
         <img src={props.avatarURL || EmptyAvatar} styleName='avatar' />
       </div>

@@ -10,10 +10,12 @@ const LiveTrades = (props) => {
   return (
     <div className='col s3 pull-s2' styleName='root'>
       <h4 styleName='header'>Latest User Trades</h4>
-      {
-        props.trades.slice(0, 5).map(s =>
-          <StockTrade key={create().value} {...s} />)
-      }
+      <div styleName='trades'>
+        {
+          props.trades.slice(0, 5).map(s =>
+            <StockTrade key={create().value} {...s} />)
+        }
+      </div>
     </div>
   )
 }

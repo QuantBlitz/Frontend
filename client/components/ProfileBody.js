@@ -9,12 +9,17 @@ import Style from '../styles/components/ProfileBody'
 
 const ProfileBody = (props) => {
   return (
-    <div className='row'>
-      <div className='card-panel' styleName='card'>
-        { props.trades.slice(0, 5).map(stock =>
-          <StockTrade key={create().value} {...stock} />) }
-        {/* <Loader /> */}
+    <div className='card-panel' styleName='card'>
+      <img src='https://puu.sh/w2jcz/711274df02.png' styleName='image' />
+      <div>
+        <h5 styleName='trades-header'>Latest Trades</h5>
+        {
+          props.trades.slice(0, 5).map(stock =>
+            <StockTrade key={create().value} {...stock} />
+          )
+        }
       </div>
+      {/* <Loader /> */}
     </div>
   )
 }
