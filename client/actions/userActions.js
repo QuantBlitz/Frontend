@@ -23,6 +23,19 @@ export const getUserProfile = (username) => {
   }
 }
 
+const userExistsSuccess = payload => ({ type: 'USER_EXISTS', payload })
+const userExistsFail = error => ({ type: 'USER_EXISTS', error })
+
+export const userExists = username => {
+  const endPoint = `/v1/user/exists/${username}`
+
+  return dispatch => {
+    axios.get(endPoint, axiosConfig)
+      .then(response => dispatch(userExistsSuccess(response.data)))
+      .catch(error => dispatch(userExistsFail(error.data)))
+  }
+}
+
 const registerUserSuccess = payload => ({ type: 'REGISTER_USER_SUCCESS', payload })
 const registerUserFail = error => ({ type: 'REGISTER_USER_FAIL', error })
 

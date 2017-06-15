@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 const initialState = {
   fetchingData: true,
   loggedIn: false,
+  usernameExists: false,
   user: {},
   portfolioData: {},
   watchlistData: {}
@@ -20,6 +21,8 @@ const user = (state = initialState, action) => {
     case 'REGISTER_USER_FAIL':
       window.location.assign('/')
       return { ...state, fetchingData: false }
+    case 'USER_EXISTS':
+      return { ...state, usernameExists: action.payload.exists }
     case 'LOGIN_USER_SUCCESS':
       return {
         ...state,

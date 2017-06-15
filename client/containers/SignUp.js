@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules'
 
 import { validUsername } from '../utils/utils'
 
-import { registerUser } from '../actions/userActions'
+import { registerUser, userExists } from '../actions/userActions'
 
 import SignUpForm from '../components/SignUpForm'
 import SignUpSuccess from '../components/SignUpSuccess'
@@ -20,10 +20,20 @@ class SignUp extends Component {
       username: '',
       email: '',
       password: '',
-      success: false
+      success: false,
+      time: null
     }
   }
   handleChange = (e) => {
+    const { userExists } = this.props
+    const { time } = this.state
+    if (e.target.name === 'username') {
+      const username = e.target.value
+      if (time) { clearTimeout(this.state.time) }
+      this.setState({
+        time: setTimeout(() => userExists(username), 750)
+      })
+    }
     const { username, isValidUserName } = this.state
     if (e.target.name === 'username'
       && !validUsername(e.target.value)) {
@@ -64,16 +74,18 @@ class SignUp extends Component {
     this.props.close()
   }
   render() {
+    const { usernameExists } = this.props
     const { isValidUserName, password, success } = this.state
     const hasValidPW = password.length >= 8 ? true :
       (password.length == 0 ? null : false)
+
+    console.log('Username exists:', usernameExists)
 
     return (
       <div styleName='root'>
         {
           !success ? <SignUpForm onSubmit={this.handleSubmit} {...this.state}
             hasValidPW={hasValidPW}
-            isValidUserName={isValidUserName}
             onClick={this.props.onClick}
             onChange={this.handleChange} />
           : <SignUpSuccess />
@@ -83,4 +95,12 @@ class SignUp extends Component {
   }
 }
 
-export default connect(null, { registerUser })(CSSModules(SignUp, Style))
+const mapStateToProps = (state) => {
+  const { usernameExists } = state.user
+  return { usernameExists }
+}
+
+export default connect(mapStateToProps, {
+  registerUser,
+  userExists
+})(CSSModules(SignUp, Style))
