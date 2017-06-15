@@ -36,12 +36,12 @@ class Root extends Component {
     logoutUser()
   }
   render() {
-    const { loggedIn } = this.props
+    const { loggedIn, user } = this.props
     const { modal } = this.state
 
     return (
       <div>
-        <NavBar loggedIn={loggedIn} onClick={this.handleClick}
+        <NavBar loggedIn={loggedIn} onClick={this.handleClick} {...user}
           logout={this.handleLogout} />
         <Modal ref='modal'>
           { modal && !loggedIn ? (modal === 'login' ?
@@ -59,8 +59,8 @@ class Root extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { loggedIn } = state.user
-  return { loggedIn }
+  const { loggedIn, user } = state.user
+  return { loggedIn, user }
 }
 
 export default connect(mapStateToProps, {
