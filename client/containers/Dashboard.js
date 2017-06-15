@@ -28,9 +28,10 @@ class Dashboard extends Component {
 
     this.state = {
       stock: {},
-      stockSymbol: '',
+      symbol: '',
       shares: 0,
-      view: 'portfolio'
+      view: 'portfolio',
+      time: null
     }
   }
   componentDidMount() {
@@ -41,11 +42,22 @@ class Dashboard extends Component {
     this.setState({ shares: e.target.value })
   }
   handleSymbolChange = (e) => {
-    const { clearSymbolInput, getSymbolInput } = this.props
+    const { getSymbolInput } = this.props
+    const { time } = this.state
     const symbol = e.target.value.toUpperCase()
-    e.target.value.length < 2 || this.state.stockSymbol < 2
-    ? clearSymbolInput() : getSymbolInput(symbol)
-    this.setState({ stockSymbol: symbol })
+
+    if (!time) {
+      this.setState({
+        symbol,
+        time: setTimeout(() => getSymbolInput(symbol), 500)
+      })
+    } else {
+      clearTimeout(this.state.time)
+      this.setState({
+        symbol,
+        time: setTimeout(() => getSymbolInput(symbol), 500)
+      })
+    }
   }
   handleStockClick = (stockID) => {
     const { stocks } = this.props
@@ -55,18 +67,18 @@ class Dashboard extends Component {
   }
   handleResultClick = (e) => {
     const { clearSymbolInput, getStockQuote } = this.props
-    this.setState({ stockSymbol: '' })
+    this.setState({ symbol: '' })
     getStockQuote(e.target.name)
     clearSymbolInput()
   }
   handleSubmit = (e) => {
-    const { stockSymbol } = this.state
+    const { symbol } = this.state
     const { getStockQuote } = this.props
     e.preventDefault()
 
-    getStockQuote(stockSymbol)
+    getStockQuote(symbol)
     this.setState({
-      stockSymbol: '',
+      symbol: '',
       stock: {},
       shares: 0
     })
@@ -94,7 +106,7 @@ class Dashboard extends Component {
     this.refs.modal.hide()
   }
   render() {
-    const { stockSymbol, shares, stock, view } = this.state
+    const { symbol, shares, stock, view } = this.state
     const { isFetching, inputResults, loggedIn, portfolioData,
       stocks, watchlist, trades, quoteData } = this.props
     const tabValues = ['trades', 'portfolio', 'watchlist']
@@ -104,7 +116,7 @@ class Dashboard extends Component {
         <div className='center'>
           <StockForm onSubmit={this.handleSubmit}
             onChange={this.handleSymbolChange} onClick={this.handleResultClick}
-            results={stockSymbol < 2 ? [] : inputResults} value={stockSymbol} />
+            results={symbol < 2 ? [] : inputResults} value={symbol} />
           {
             isFetching && quoteData ? '' : (!quoteData.Name && !quoteData ? <StockNotFound />
               : <StockDetails {...quoteData} onClick={this.handleStockAction} onChange={this.handleSharesChange} value={shares} />)
