@@ -18,8 +18,10 @@ const NavBar = (props) => {
         <Link id='logo-container' to='/' className='brand-logo'>
           <img src={Logo} styleName='logo' />
         </Link>
-        <NavDesktop loggedIn={props.loggedIn} logout={props.logout} onClick={props.onClick} />
-        <NavMobile loggedIn={props.loggedIn} logout={props.logout} onClick={props.onClick} />
+        <NavDesktop loggedIn={props.loggedIn} username={props.username}
+          logout={props.logout} onClick={props.onClick} />
+        <NavMobile loggedIn={props.loggedIn} username={props.username}
+          logout={props.logout} onClick={props.onClick} />
       </div>
     </nav>
   )
