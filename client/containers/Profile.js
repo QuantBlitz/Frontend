@@ -36,7 +36,6 @@ class Profile extends Component {
     const { loading } = this.state
     const { match, user, trades } = this.props
 
-    console.log(match)
     return (
       <Root>
         <div className='container' styleName='root'>
