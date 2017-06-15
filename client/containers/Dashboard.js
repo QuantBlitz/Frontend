@@ -39,25 +39,20 @@ class Dashboard extends Component {
     getUserDashboard()
   }
   handleSharesChange = (e) => {
-    this.setState({ shares: e.target.value })
+    this.setState({
+      shares: e.target.value
+    })
   }
   handleSymbolChange = (e) => {
     const { getSymbolInput } = this.props
     const { time } = this.state
     const symbol = e.target.value.toUpperCase()
 
-    if (!time) {
-      this.setState({
-        symbol,
-        time: setTimeout(() => getSymbolInput(symbol), 500)
-      })
-    } else {
-      clearTimeout(this.state.time)
-      this.setState({
-        symbol,
-        time: setTimeout(() => getSymbolInput(symbol), 500)
-      })
-    }
+    if (time) { clearTimeout(this.state.time) }
+    this.setState({
+      symbol,
+      time: setTimeout(() => getSymbolInput(symbol), 500)
+    })
   }
   handleStockClick = (stockID) => {
     const { stocks } = this.props
@@ -88,7 +83,8 @@ class Dashboard extends Component {
     const { stock, shares } = this.state
     const { LastPrice, Name, Symbol } = quoteData
     const isDuplicate = checkSymbolDuplicates(Symbol, watchlist)
-    let stockOrder = stock.symbol ? { ...stock, shares } : { shares, company: Name, symbol: Symbol }
+    let stockOrder = stock.symbol ?
+      { ...stock, shares } : { shares, company: Name, symbol: Symbol }
 
     if (shares < 1 && action !== 'watch' && action !== 'sell_all')
       return alert('Must buy/sell at least one share')
@@ -102,7 +98,10 @@ class Dashboard extends Component {
     stockAction(action !== 'sell_all' ? action : 'sell', stockOrder)
     clearSymbolInput()
     clearQuoteData()
-    this.setState({ stock: {}, shares: 0, })
+    this.setState({
+      stock: {},
+      shares: 0
+    })
     this.refs.modal.hide()
   }
   render() {
