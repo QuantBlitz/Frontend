@@ -2,9 +2,11 @@ import axios from 'axios'
 
 import { getPortfolio, getWatchList } from './portfolioActions'
 
+const baseURL = process.env.NODE_ENV === 'development' ? 
+  'http://localhost:8080/' : 'http://quantblitz.com/'
+
 const axiosConfig = {
-  // baseURL: 'http://localhost:8080/',
-  baseURL: 'http://quantblitz.com/',
+  baseURL,
   withCredentials: true
 }
 
