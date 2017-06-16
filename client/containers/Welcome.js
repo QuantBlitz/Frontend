@@ -19,8 +19,10 @@ import WelcomeLogo from '../assets/welcome_logo.svg'
 
 import Style from '../styles/containers/Welcome'
 
-// const ws = new WebSocket('ws://localhost:4040/')
-const ws = new WebSocket('ws://quantblitz.com:4040/')
+const wsURL = process.env.NODE_ENV === 'development' ?
+  'ws://localhost:4040/' : 'ws://quantblitz.com:4040/'
+
+const ws = new WebSocket(wsURL)
 
 class Welcome extends Component {
   constructor(props) {
