@@ -1,9 +1,7 @@
 const initialState = {
   isFetching: true,
-  isFetchingChart: true,
   inputResults: [],
   latestTrades: [],
-  symbolHistory: [],
   quoteData: {}
 }
 
@@ -38,23 +36,6 @@ const stock = (state = initialState, action) => {
         ...state,
         inputResults: [],
         quoteData: {}
-      }
-    case 'GET_STOCK_HISTORY_SUCCESS':
-      let history = action.payload.map(s => ({
-          close: +s.Close, date: s.Date, high: +s.High,
-          low: +s.Low, open: +s.Open, symbol: s.Symbol
-        })
-      )
-      return {
-        ...state,
-        isFetchingChart: false,
-        symbolHistory: history
-      }
-    case 'GET_STOCK_HISTORY_FAIL':
-      return {
-        ...state,
-        isFetchingChart: true,
-        symbolHistory: []
       }
     default:
       return state

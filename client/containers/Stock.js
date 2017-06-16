@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
-import { getStockHistory } from '../actions/stockActions'
+import { getSymbolChart } from '../actions/symbolActions'
 
 import { formatDate } from '../utils/utils'
 
@@ -17,27 +17,29 @@ class Stock extends Component {
 
     this.state = {}
   }
-  componentWillMount() {
-    const { getStockHistory, params } = this.props
+  componentDidMount() {
+    const { getSymbolChart, match } = this.props
     const today = new Date()
     const newDate = new Date()
     const monthAgo = new Date(newDate.setDate(newDate.getDate() - 30))
-    getStockHistory(params.symbol, formatDate(monthAgo), formatDate(today))
+    getSymbolChart(match.params.symbol, formatDate(monthAgo), formatDate(today))
   }
   render() {
-    const { isFetchingChart, params, symbolHistory } = this.props
+    const { isFetchingChart, match, history } = this.props
     return (
       <div className='container' styleName='root'>
-        <StockOverview symbol={params.symbol} />
-        { isFetchingChart ? 'Loading...' : <StockChart history={symbolHistory} /> }
+        <StockOverview symbol={match.params.symbol} />
+        { isFetchingChart ? 'Loading...' : <StockChart history={history} /> }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isFetchingChart, symbolHistory } = state.stock
-  return { isFetchingChart, symbolHistory }
+  const { isFetchingChart, history } = state.symbol
+  return { isFetchingChart, history }
 }
 
-export default connect(mapStateToProps, { getStockHistory })(CSSModules(Stock, Style))
+export default connect(mapStateToProps, {
+  getSymbolChart
+})(CSSModules(Stock, Style))

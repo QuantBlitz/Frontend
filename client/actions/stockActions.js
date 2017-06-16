@@ -44,15 +44,3 @@ export const getStockQuote = (symbol) => {
       .catch(error => dispatch(stockQuoteFail(error.data)))
   }
 }
-
-const stockHistorySuccess = payload => ({ type: 'GET_STOCK_HISTORY_SUCCESS', payload })
-const stockHistoryFail = error => ({ type: 'GET_STOCK_HISTORY_FAIL', error })
-
-export const getStockHistory = (symbol, start, end) => {
-  const endPoint = `/v1/stock/history/${symbol}?start=${start}&end=${end}`
-  return dispatch => {
-    axios.get(endPoint, axiosConfig)
-      .then(response => dispatch(stockChartSuccess(response.data)))
-      .catch(error => dispatch(stockChartFail(error.data)))
-  }
-}
