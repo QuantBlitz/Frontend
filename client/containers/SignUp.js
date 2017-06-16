@@ -79,15 +79,16 @@ class SignUp extends Component {
     const hasValidPW = password.length >= 8 ? true :
       (password.length == 0 ? null : false)
 
-    console.log('Username exists:', usernameExists)
-
     return (
       <div styleName='root'>
         {
-          !success ? <SignUpForm onSubmit={this.handleSubmit} {...this.state}
-            hasValidPW={hasValidPW}
-            onClick={this.props.onClick}
-            onChange={this.handleChange} />
+          !success ?
+            <SignUpForm {...this.state}
+              onSubmit={this.handleSubmit}
+              usernameExists={usernameExists}
+              hasValidPW={hasValidPW}
+              onClick={this.props.onClick}
+              onChange={this.handleChange} />
           : <SignUpSuccess />
         }
       </div>

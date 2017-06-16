@@ -7,14 +7,15 @@ import InputField from '../atoms/InputField'
 import Style from '../styles/components/SignUpForm'
 
 const SignUpForm = (props) => {
-  const validUsername = props.isValidUserName ? 'valid' : 'invalid'
-  const unameClass = props.isValidUserName === null ? '' : validUsername
-  const pwClass = props.hasValidPW === null ? '' :
-    (props.hasValidPW ? 'valid' : 'invalid')
+  const { hasValidPW, isValidUserName, usernameExists } = props
+  const validUsername = isValidUserName && !usernameExists ? 'valid' : 'invalid'
+  const unameClass = isValidUserName === null ? '' : validUsername
+  const usernameTaken = usernameExists ? 'Username Taken' : 'Not Valid'
+  const pwClass = hasValidPW === null ? '' : (hasValidPW ? 'valid' : 'invalid')
   return (
     <div className='row'>
       <form className='col s12' onSubmit={props.onSubmit}>
-        <InputField label='Username' htmlFor='username'>
+        <InputField label='Username' htmlFor='username' error={usernameTaken}>
           <input className={unameClass} type='text'
             name='username' onChange={props.onChange} />
         </InputField>

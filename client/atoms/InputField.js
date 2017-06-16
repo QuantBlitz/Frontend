@@ -9,7 +9,8 @@ const InputField = (props) => {
     <div className='row'>
       <div className={'input-field col ' + (props.size || 's12')}>
         { props.children }
-        <label htmlFor={props.htmlFor} data-error='Not Valid' data-success='Perfect!'>
+        <label htmlFor={props.htmlFor} data-error={props.error || 'Not Valid'}
+          data-success='Perfect!'>
           { props.label }
         </label>
       </div>
