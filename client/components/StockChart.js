@@ -8,7 +8,7 @@ import Style from '../styles/components/StockChart'
 let StockChart = (props) => {
   const h = window.innerHeight
   const w = window.innerWidth
-  const data = props.history.slice(0, 14)
+  const data = props.history.slice(0, 14).reverse()
   return (
     <div className='row' styleName='root'>
       <div styleName='chart'>
