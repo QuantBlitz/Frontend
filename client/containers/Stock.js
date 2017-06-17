@@ -8,6 +8,8 @@ import { formatDate } from '../utils/utils'
 
 import StockOverview from '../components/StockOverview'
 import StockChart from '../components/StockChart'
+import CommentField from '../components/CommentField'
+import Loader from '../atoms/Loader'
 
 import Style from '../styles/containers/Stock'
 
@@ -29,7 +31,8 @@ class Stock extends Component {
     return (
       <div className='container' styleName='root'>
         <StockOverview symbol={match.params.symbol} />
-        { isFetchingChart ? 'Loading...' : <StockChart history={history} /> }
+        { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
+        <CommentField />
       </div>
     )
   }
