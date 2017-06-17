@@ -1,0 +1,20 @@
+@value Palette: "../globals/Palette";
+@value Blue-Grey-Darken-2, Blue-Grey-Lighten-2 from Palette;
+
+.root {
+  border: 1px solid Blue-Grey-Darken-2;
+  border-radius: 2px;
+  margin-left: 1%;
+  margin-top: 1%;
+  padding: 2% 1% 1% 3%;
+  width: 99%;
+}
+
+.reply {
+  color: Blue-Grey-Lighten-2;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  height: 50%;
+  width: 15%;
+}

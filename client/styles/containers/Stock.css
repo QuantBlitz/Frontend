@@ -1,3 +1,7 @@
 .root {
   min-height: 85vh;
 }
+
+.comments-container {
+  margin-right: 5%;
+}

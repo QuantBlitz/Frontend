@@ -9,11 +9,25 @@ const initialState = {
     }
   },
   two: {
-    content: 'twoooo',
+    content: 'number two',
     comments: {
       five: {
-        content: 'yay five',
-        comments: {}
+        content: 'five',
+        comments: {
+          eight: {
+            content: 'this is eight',
+            comments: {}
+          },
+          nine: {
+            content: 'no this is patrick',
+            comments: {
+              ten: {
+                content: 'no THIS is patrick',
+                comments: {}
+              }
+            }
+          }
+        }
       },
       six: {
         content: 'mega six',
@@ -22,7 +36,7 @@ const initialState = {
     }
   },
   three: {
-    content: 'three stuff',
+    content: 'three three three',
     comments: {
       seven: {
         content: 'seven things',

@@ -41,7 +41,9 @@ class Stock extends Component {
           <StockOverview symbol={match.params.symbol} />
           { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
           <CommentForm onSubmit={this.handleSubmit} />
-          <CommentField comments={comments} />
+          <div styleName='comments-container'>
+            <CommentField comments={comments} />
+          </div>
         </div>
       </Root>
     )
