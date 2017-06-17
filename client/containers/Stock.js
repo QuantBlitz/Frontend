@@ -9,7 +9,7 @@ import { formatDate } from '../utils/utils'
 import Root from './Root'
 import StockOverview from '../components/StockOverview'
 import StockChart from '../components/StockChart'
-import CommentField from '../components/CommentField'
+import CommentForm from '../components/CommentForm'
 import Loader from '../atoms/Loader'
 
 import Style from '../styles/containers/Stock'
@@ -39,7 +39,7 @@ class Stock extends Component {
         <div className='container' styleName='root'>
           <StockOverview symbol={match.params.symbol} />
           { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
-          <CommentField onSubmit={this.handleSubmit} />
+          <CommentForm onSubmit={this.handleSubmit} />
         </div>
       </Root>
     )
