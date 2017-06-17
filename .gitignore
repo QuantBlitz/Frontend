@@ -1,6 +1,7 @@
 .DS_STORE
 node_modules
 .module-cache
+config.json
 *.log*
 *bundle*
 
