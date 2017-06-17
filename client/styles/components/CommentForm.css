@@ -1,0 +1,32 @@
+@value Palette:  "../globals/Palette";
+@value Blue-Grey-Darken-2, Blue-Grey-Lighten-2, Light-Grey, White from Palette;
+
+.root {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.form {
+  height: 100%;
+  width: 50%;
+}
+
+.text-area {
+  height: 100%;
+  resize: none;
+  width: 100%;
+}
+
+.btn {
+  background-color: White;
+  border: 2px solid Blue-Grey-Darken-2;
+  border-radius: 2px;
+  color: Blue-Grey-Darken-2;
+  height: 30%;
+  width: 100%;
+  &:focus {
+    background-color: White;
+  }
+}

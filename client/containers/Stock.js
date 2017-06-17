@@ -6,6 +6,7 @@ import { getSymbolChart } from '../actions/symbolActions'
 
 import { formatDate } from '../utils/utils'
 
+import Root from './Root'
 import StockOverview from '../components/StockOverview'
 import StockChart from '../components/StockChart'
 import CommentField from '../components/CommentField'
@@ -26,21 +27,29 @@ class Stock extends Component {
     const monthAgo = new Date(newDate.setDate(newDate.getDate() - 30))
     getSymbolChart(match.params.symbol, formatDate(monthAgo), formatDate(today))
   }
+  handleSubmit = (e) => {
+    const { loggedIn } = this.props
+    e.preventDefault()
+    console.log('Logged in?', loggedIn)
+  }
   render() {
     const { isFetchingChart, match, history } = this.props
     return (
-      <div className='container' styleName='root'>
-        <StockOverview symbol={match.params.symbol} />
-        { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
-        <CommentField />
-      </div>
+      <Root>
+        <div className='container' styleName='root'>
+          <StockOverview symbol={match.params.symbol} />
+          { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
+          <CommentField onSubmit={this.handleSubmit} />
+        </div>
+      </Root>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   const { isFetchingChart, history } = state.symbol
-  return { isFetchingChart, history }
+  const { loggedIn } = state.user
+  return { isFetchingChart, history, loggedIn }
 }
 
 export default connect(mapStateToProps, {
