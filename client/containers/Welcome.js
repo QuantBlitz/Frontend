@@ -40,7 +40,7 @@ class Welcome extends Component {
 
     return (
       <div styleName='root'>
-        <Particles style={{ position: "absolute" }} params={{ particles }} />
+        <Particles style={{ position: 'absolute' }} params={{ particles }} />
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>

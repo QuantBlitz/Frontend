@@ -12,11 +12,12 @@ const symbol = (state = initialState, action) => {
         history: action.payload
       }
     case 'GET_SYMBOL_CHART_FAIL':
-      return {
-        ...state,
-        isFetchingChart: true,
-        history: []
-      }
+      // return {
+      //   ...state,
+      //   isFetchingChart: true,
+      //   history: []
+      // }
+      return state
     default:
       return state
   }

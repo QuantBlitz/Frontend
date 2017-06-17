@@ -10,9 +10,9 @@ let StockChart = (props) => {
   const w = window.innerWidth
   const data = props.history.slice(0, 14)
   return (
-    <div>
+    <div className='row' styleName='root'>
       <div styleName='chart'>
-        <LineChart width={w * 0.5} height={h * 0.4} data={data}>
+        <LineChart width={w * 0.6} height={h * 0.4} data={data}>
           <Line type='monotone' dataKey='high' stroke='#4F6873' />
           <Line type='monotone' dataKey='close' stroke='#8B0000' />
           <Line type='monotone' dataKey='low' stroke='#4F6873' />
