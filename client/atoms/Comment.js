@@ -12,10 +12,15 @@ const Comment = (props) => {
     <div styleName='root'>
       { props.content }
       <div>
-        <span styleName='reply'>reply </span>
-        <span styleName='reply'>permalink</span>
+        <span styleName='reply' onClick={() => props.onClick(props.id)}>
+          reply &nbsp;
+        </span>
+        <span styleName='reply' onClick={() => props.onClick(props.id)}>
+          permalink
+        </span>
       </div>
-      <CommentField key={create().value} comments={props.comments} />
+      <CommentField key={create().value} onClick={props.onClick}
+        comments={props.comments} />
     </div>
   )
 }

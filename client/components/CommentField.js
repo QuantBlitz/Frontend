@@ -13,7 +13,7 @@ const CommentField = (props) => {
     <div>
       {
         Object.keys(comments).map(x =>
-          <Comment key={create().value} {...comments[x]} />
+          <Comment key={create().value} id={x} onClick={props.onClick} {...comments[x]} />
         )
       }
     </div>

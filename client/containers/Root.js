@@ -48,10 +48,7 @@ class Root extends Component {
             <Login close={() => this.refs.modal.hide()} /> :
             <SignUp onClick={() => this.setState({ modal: 'login' })} close={() => this.refs.modal.hide()} />) : '' }
         </Modal>
-        {
-          loggedIn ? (this.props.children ? this.props.children : <IndexRedirect />)
-          : <IndexRedirect />
-        }
+        { this.props.children }
         <Footer />
       </div>
     )

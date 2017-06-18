@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Root from './Root'
 import Dashboard from './Dashboard'
 import Welcome from './Welcome'
 
@@ -12,9 +13,9 @@ class IndexRedirect extends Component {
     const { fetchingData, loggedIn } = this.props
 
     return (
-      <div>
+      <Root>
         { fetchingData ? '' : (loggedIn ? <Dashboard /> : <Welcome />) }
-      </div>
+      </Root>
     )
   }
 }

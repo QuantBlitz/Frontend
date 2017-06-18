@@ -28,6 +28,9 @@ class Stock extends Component {
     const monthAgo = new Date(newDate.setDate(newDate.getDate() - 30))
     getSymbolChart(match.params.symbol, formatDate(monthAgo), formatDate(today))
   }
+  handleClick = (id) => {
+    console.log('Comment ID:', id)
+  }
   handleSubmit = (e) => {
     const { loggedIn } = this.props
     e.preventDefault()
@@ -42,7 +45,7 @@ class Stock extends Component {
           { isFetchingChart && !history ? <Loader /> : <StockChart history={history} /> }
           <CommentForm onSubmit={this.handleSubmit} />
           <div styleName='comments-container'>
-            <CommentField comments={comments} />
+            <CommentField comments={comments} onClick={this.handleClick} />
           </div>
         </div>
       </Root>

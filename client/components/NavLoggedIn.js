@@ -7,7 +7,7 @@ import NavItem from '../atoms/NavItem'
 const NavLoggedIn = (props) => {
   return (
     <div>
-      <NavItem to='/s/AAPL' text='Stock' />
+      <NavItem to='/s/TSLA' text='Stock' />
       <NavItem to={'/u/' + props.user} text='Profile' />
       <NavItem to='/settings' text='Settings' />
       <li>
