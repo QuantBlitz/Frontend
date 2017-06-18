@@ -34,9 +34,9 @@ const ProfileBody = (props) => {
       <div styleName='trades'>
         <h5 styleName='trades-header'>Latest Trades</h5>
         {
-          props.trades ? props.trades.slice(0, 5).map(stock =>
+          props.trades ? props.trades.map(stock =>
             <StockTrade key={create().value} {...stock} />
-          ) : 'There are no trades yet!'
+          ) : 'User hasn\'t made any trades yet'
         }
       </div>
     </div>

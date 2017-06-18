@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
-import { getUserProfile } from '../actions/userActions'
+import { getProfile } from '../actions/profileActions'
 import { getPortfolio } from '../actions/portfolioActions'
 
 import Loader from '../atoms/Loader'
@@ -22,8 +22,8 @@ class Profile extends Component {
     }
   }
   componentDidMount() {
-    const { getPortfolio } = this.props
-    getPortfolio()
+    const { getProfile, match } = this.props
+    getProfile(match.params.user)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
@@ -49,11 +49,10 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   const { user } = state.user
-  const { trades } = state.portfolio
+  const { trades } = state.profile
   return { user, trades }
 }
 
 export default connect(mapStateToProps, {
-  getUserProfile,
-  getPortfolio
+  getProfile
 })(CSSModules(Profile, Style))

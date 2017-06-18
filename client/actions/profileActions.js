@@ -12,7 +12,7 @@ const getProfileSuccess = payload => ({ type: 'GET_PROFILE_SUCCESS', payload })
 const getProfileFail = error => ({ type: 'GET_PROFILE_FAIL', error })
 
 export const getProfile = (username) => {
-  const endPoint = `/u/${username}`
+  const endPoint = `/v1/profile/${username}`
   return dispatch => {
     axios.get(endPoint, config)
       .then(response => dispatch(getProfileSuccess(response.data)))
