@@ -5,7 +5,7 @@ import { getPortfolio, getWatchList } from './portfolioActions'
 const baseURL = process.env.NODE_ENV === 'development' ? 
   'http://localhost:8080/' : 'http://quantblitz.com/'
 
-const axiosConfig = {
+const config = {
   baseURL,
   withCredentials: true
 }
@@ -17,7 +17,7 @@ export const getUserProfile = (username) => {
   const endPoint = `/v1/user/${username}`
 
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(userProfileSuccess(response.data)))
       .catch(error => dispatch(userProfileFail(error.data)))
   }
@@ -30,7 +30,7 @@ export const userExists = username => {
   const endPoint = `/v1/user/exists/${username}`
 
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(userExistsSuccess(response.data)))
       .catch(error => dispatch(userExistsFail(error.data)))
   }
@@ -43,7 +43,7 @@ export const registerUser = (userData) => {
   const endPoint = '/v1/user/register'
 
   return dispatch => {
-    axios.post(endPoint, userData, axiosConfig)
+    axios.post(endPoint, userData, config)
       .then(response => dispatch(registerUserSuccess(response.data)))
       .catch(error => dispatch(registerUserFail(error)))
   }
@@ -56,7 +56,7 @@ export const loginUser = (userData) => {
   const endPoint = '/v1/user/login'
 
   return dispatch => {
-    axios.post(endPoint, userData, axiosConfig)
+    axios.post(endPoint, userData, config)
       .then(response => dispatch(loginUserSuccess(response.data)))
       .catch(error => dispatch(loginUserFail(error.data)))
   }
@@ -71,7 +71,7 @@ export const logoutUser = () => {
   return (dispatch, getState) => {
     const { username } = getState().user
 
-    axios.post(endPoint, { username }, axiosConfig)
+    axios.post(endPoint, { username }, config)
       .then(response => dispatch(logoutUserSuccess(response.data)))
       .catch(error => dispatch(logoutUserFail(error.data)))
   }
@@ -83,7 +83,7 @@ const userAuthFail = error => ({ type: 'USER_AUTH_FAIL', error })
 export const userAuth = () => {
   const endPoint = '/v1/'
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(userAuthSuccess(response.data)))
       .catch(error => dispatch(userAuthFail(error.data)))
   }
@@ -96,7 +96,7 @@ export const getUserDashboard = () => {
   const endPoint = `/v1/user/dashboard`
 
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(userDashboardSuccess(response.data)))
       .then(() => dispatch(getPortfolio()))
       .then(() => dispatch(getWatchList()))

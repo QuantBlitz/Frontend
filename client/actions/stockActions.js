@@ -5,7 +5,7 @@ import { getUserDashboard } from './userActions'
 const baseURL = process.env.NODE_ENV === 'development' ?
   'http://localhost:8080/' : 'http://quantblitz.com/'
 
-const axiosConfig = {
+const config = {
   baseURL,
   withCredentials: true
 }
@@ -25,7 +25,7 @@ export const getSymbolInput = (input) => {
   const endPoint = `/v1/stock/input/${input}`
 
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(symbolInputSuccess(response.data)))
       .then(() => clearSymbolInput())
       .catch(error => dispatch(symbolInputFail(error.data)))
@@ -39,7 +39,7 @@ export const getStockQuote = (symbol) => {
   const endPoint = `/v1/stock/quote/${symbol}`
 
   return dispatch => {
-    axios.get(endPoint, axiosConfig)
+    axios.get(endPoint, config)
       .then(response => dispatch(stockQuoteSuccess(response.data)))
       .catch(error => dispatch(stockQuoteFail(error.data)))
   }
