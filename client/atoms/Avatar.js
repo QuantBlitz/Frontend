@@ -10,7 +10,7 @@ const Avatar = (props) => {
   return (
     <div styleName='root' onClick={props.onClick}>
       <div className={props.className || 'col s4 offset-s5'}>
-        <img src={props.avatarURL || EmptyAvatar} styleName='avatar' />
+        <img src={props.avatarURL || '/' + EmptyAvatar} styleName='avatar' />
       </div>
     </div>
   )

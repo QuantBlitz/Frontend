@@ -16,7 +16,7 @@ const NavBar = (props) => {
     <nav className='blue-grey lighten-4' role='navigation'>
       <div className='nav-wrapper container'>
         <Link id='logo-container' to='/' className='brand-logo'>
-          <img src={Logo} styleName='logo' />
+          <img src={'/' + Logo} styleName='logo' />
         </Link>
         <NavDesktop loggedIn={props.loggedIn} username={props.username}
           logout={props.logout} onClick={props.onClick} />

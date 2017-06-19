@@ -14,7 +14,6 @@ import LiveTrades from '../components/LiveTrades'
 import Login from './Login'
 import SignUp from './SignUp'
 
-import Logo from '../assets/logo.svg'
 import WelcomeLogo from '../assets/welcome_logo.svg'
 
 import Style from '../styles/containers/Welcome'
@@ -47,7 +46,7 @@ class Welcome extends Component {
         <div className='row center' styleName='hero-container'>
           <div className='col s9'>
             <div className='row'>
-              <img src={WelcomeLogo} styleName='logo-svg' />
+              <img src={'/' + WelcomeLogo} styleName='logo-svg' />
             </div>
             <HeroSection onClick={() => this.refs.modal.show()} />
           </div>
