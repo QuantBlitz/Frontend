@@ -12,6 +12,7 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case 'REGISTER_USER_SUCCESS':
+      window.location.assign('/')
       return {
         ...state,
         fetchingData: false,
@@ -24,6 +25,7 @@ const user = (state = initialState, action) => {
     case 'USER_EXISTS':
       return { ...state, usernameExists: action.payload.exists }
     case 'LOGIN_USER_SUCCESS':
+      window.location.assign('/')
       return {
         ...state,
         fetchingData: false,
