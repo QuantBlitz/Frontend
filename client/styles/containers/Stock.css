@@ -3,5 +3,8 @@
 }
 
 .comments-container {
-  margin-right: 5%;
+  flex: 1;
+  width: 90%;
+  margin-left: 3%;
+  justify-content: center;
 }
