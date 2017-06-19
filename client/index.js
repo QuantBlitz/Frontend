@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import store from './store/configStore'
 
@@ -35,7 +35,7 @@ const analytics = ({ location }) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <div>
         <Route path='/' component={analytics} />
         <Switch>
@@ -47,7 +47,7 @@ ReactDOM.render(
           <Route path='*' component={NoMatch} />
         </Switch>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('application')
 )
