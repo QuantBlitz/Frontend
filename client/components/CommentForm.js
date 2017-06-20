@@ -8,7 +8,8 @@ const CommentForm = (props) => {
   return (
     <div className='row' styleName='root'>
       <form styleName='form' onSubmit={props.onSubmit}>
-        <textarea styleName='text-area' onChange={props.onChange} />
+        <textarea styleName='text-area' onChange={props.onChange}
+          value={props.value} />
         <button styleName='btn'>Comment</button>
       </form>
     </div>
