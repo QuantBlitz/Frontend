@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import CSSModules from 'react-css-modules'
 import { create } from 'guid'
 
@@ -8,15 +8,17 @@ import IconBlock from '../atoms/IconBlock'
 
 import Style from '../styles/components/IconSection'
 
-const IconSection = (props) => {
-  return (
-    <div className='container' styleName='root'>
-      <div className='row'>
-        { icon_section.map(block => <IconBlock key={create().value} {...block} />) }
+class IconSection extends PureComponent {
+  render() {
+    return (
+      <div className='container' styleName='root'>
+        <div className='row'>
+          { icon_section.map(block => <IconBlock key={create().value} {...block} />) }
+        </div>
+        <br />
       </div>
-      <br />
-    </div>
-  )
+    )
+  }
 }
 
 export default CSSModules(IconSection, Style)
