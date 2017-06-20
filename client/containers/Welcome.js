@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
-import Particles from 'react-particles-js'
 import Modal from 'boron/FlyModal'
-
-import { particles } from '../assets/particles-grab-config.json'
 
 import { getLatestTrades } from '../actions/stockActions'
 
 import HeroSection from '../components/HeroSection'
 import IconSection from '../components/IconSection'
 import LiveTrades from '../components/LiveTrades'
+import Particle from '../components/Particle'
 import Login from './Login'
 import SignUp from './SignUp'
 
@@ -39,7 +37,7 @@ class Welcome extends Component {
 
     return (
       <div styleName='root'>
-        <Particles style={{ position: 'absolute' }} params={{ particles }} />
+        <Particle />
         <Modal ref='modal'>
           { !loggedIn ? <SignUp close={() => this.refs.modal.hide()} /> : '' }
         </Modal>
