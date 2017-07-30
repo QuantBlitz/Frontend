@@ -11,8 +11,8 @@ const config = {
 const symbolChartSuccess = payload => ({ type: 'GET_SYMBOL_CHART_SUCCESS', payload })
 const symbolChartFail = error => ({ type: 'GET_SYMBOL_CHART_FAIL', error })
 
-export const getSymbolChart = (symbol, start, end) => {
-  const endPoint = `/v1/stock/history/${symbol}?start=${start}&end=${end}`
+export const getSymbolChart = (symbol) => {
+  const endPoint = `/v1/stock/history/${symbol}`
   return dispatch => {
     axios.get(endPoint, config)
       .then(response => dispatch(symbolChartSuccess(response.data)))

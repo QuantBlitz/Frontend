@@ -2,13 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom'
 
 import store from './store/configStore'
 
 import Root from './containers/Root'
 import Dashboard from './containers/Dashboard'
-import Home from './containers/Home'
 import IndexRedirect from './containers/IndexRedirect'
 import Profile from './containers/Profile'
 import Settings from './containers/Settings'
@@ -20,11 +19,23 @@ import { ga } from '../config.json'
 
 ReactGA.initialize(ga)
 
-const authTransition = (nextState, replace, store) => {
-  const { user } =  store.getState()
-  if (!user.loggedIn) {
-    return replace('/')
-  }
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter
+
+const isAuthenticated = () => store.getState().auth.loggedIn
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route {...rest} render={props => (
+      isAuthenticated() ? (
+        <Component {...props}/>
+      ) : (
+        <Redirect to={{
+          pathname: '/',
+          state: { from: props.location }
+        }} />
+      )
+    )} />
+  )
 }
 
 const analytics = ({ location }) => {
@@ -35,9 +46,9 @@ const analytics = ({ location }) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <div>
-        <Route path='/' component={analytics} />
+        <Route component={analytics} />
         <Switch>
           <Route exact path='/' component={IndexRedirect} />
           <Route path='/settings' component={Settings} />
@@ -47,7 +58,7 @@ ReactDOM.render(
           <Route path='*' component={NoMatch} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('application')
 )

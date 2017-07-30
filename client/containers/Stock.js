@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
 
 import { getSymbolChart } from '../actions/symbolActions'
+import { postComment, postReply } from '../actions/commentsActions'
 
 import Root from './Root'
 import StockOverview from '../components/StockOverview'
@@ -18,15 +19,21 @@ class Stock extends Component {
     super(props)
 
     this.state = {
-      comment: ''
+      comment: '',
+      reply: '',
+      replyID: null
     }
   }
   componentDidMount() {
     const { getSymbolChart, match } = this.props
     getSymbolChart(match.params.symbol)
   }
-  handleClick = (id) => {
-    console.log('Comment ID:', id)
+  handleClick = (id = null) => {
+    const { loggedIn } = this.props
+    // if (!loggedIn) return alert('You must be logged in to reply')
+    this.setState({
+      replyID: id
+    })
   }
   handleChange = (e) => {
     this.setState({
@@ -34,15 +41,21 @@ class Stock extends Component {
     })
   }
   handleSubmit = (e) => {
-    const { loggedIn } = this.props
+    const { loggedIn, match, postComment } = this.props
+    const { symbol } = match.params
+    const { comment } = this.state
     e.preventDefault()
+    if (!loggedIn) return alert('You must be logged in to comment')
+    if (comment.length < 3) return alert('Comment must be at least 3 characters')
+
+    postComment({ symbol, comment })
     this.setState({
       comment: ''
     })
   }
   render() {
     const { comments, isFetchingChart, match, history } = this.props
-    const { comment } = this.state
+    const { comment, replyID } = this.state
 
     return (
       <Root>
@@ -53,7 +66,10 @@ class Stock extends Component {
             onChange={this.handleChange}
             value={comment} />
           <div styleName='comments-container'>
-            <CommentField comments={comments} onClick={this.handleClick} />
+            <CommentField
+              onClick={this.handleClick}
+              comments={comments}
+              replyID={replyID} />
           </div>
         </div>
       </Root>
@@ -69,5 +85,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  getSymbolChart
+  getSymbolChart,
+  postComment,
+  postReply
 })(CSSModules(Stock, Style))

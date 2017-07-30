@@ -1,4 +1,5 @@
-import { browserHistory } from 'react-router'
+import { pushState } from 'react-router'
+
 
 const initialState = {
   fetchingData: true,
@@ -12,7 +13,6 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case 'REGISTER_USER_SUCCESS':
-      window.location.assign('/')
       return {
         ...state,
         fetchingData: false,
@@ -25,7 +25,6 @@ const user = (state = initialState, action) => {
     case 'USER_EXISTS':
       return { ...state, usernameExists: action.payload.exists }
     case 'LOGIN_USER_SUCCESS':
-      window.location.assign('/')
       return {
         ...state,
         fetchingData: false,
@@ -36,7 +35,7 @@ const user = (state = initialState, action) => {
       window.location.assign('/')
       return { ...state, fetchingData: false }
     case 'LOGOUT_USER_SUCCESS':
-      window.location.assign('/')
+      pushState.push('/')
       return {
         ...state,
         fetchingData: false,

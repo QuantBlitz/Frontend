@@ -8,14 +8,26 @@ const config = {
   withCredentials: true
 }
 
-const addReplySuccess = payload => ({ type: 'ADD_REPLY_SUCCESS', payload })
-const addReplyFail = error => ({ type: 'ADD_REPLY_FAIL', error })
+const postCommentSuccess = payload => ({ type: 'POST_COMMENT_SUCCESS', payload })
+const postCommentFail = error => ({ type: 'POST_COMMENT_FAIL', error })
 
-export const addReply = (data) => {
-  const endPoint = '/v1/comment/' + data.symbol
+export const postComment = (data) => {
+  const endPoint = '/v1/comment/create'
   return dispatch => {
     axios.post(endPoint, data, config)
-      .then(response => dispatch(addReplySuccess(response.data)))
-      .catch(error => dispatch(addReplyFail(error.data)))
+      .then(response => dispatch(postCommentSuccess(response.data)))
+      .catch(error => dispatch(postCommentFail(error.data)))
+  }
+}
+
+const postReplySuccess = payload => ({ type: 'POST_REPLY_SUCCESS', payload })
+const postReplyFail = error => ({ type: 'POST_REPLY_FAIL', error })
+
+export const postReply = (data) => {
+  const endPoint = '/v1/comment/reply'
+  return dispatch => {
+    axios.post(endPoint, data, config)
+      .then(response => dispatch(postReplySuccess(response.data)))
+      .catch(error => dispatch(postReplyFail(error.data)))
   }
 }

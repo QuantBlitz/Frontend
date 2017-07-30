@@ -1,49 +1,6 @@
+import mock_data from '../assets/mock_data.json'
+
 const initialState = {
-  one: {
-    content: 'one',
-    comments: {
-      four: {
-        content: 'here is four',
-        comments: {}
-      }
-    }
-  },
-  two: {
-    content: 'number two',
-    comments: {
-      five: {
-        content: 'five',
-        comments: {
-          eight: {
-            content: 'this is eight',
-            comments: {}
-          },
-          nine: {
-            content: 'no this is patrick',
-            comments: {
-              ten: {
-                content: 'no THIS is patrick',
-                comments: {}
-              }
-            }
-          }
-        }
-      },
-      six: {
-        content: 'mega six',
-        comments: {}
-      }
-    }
-  },
-  three: {
-    content: 'three three three',
-    comments: {
-      seven: {
-        content: 'seven things',
-        comments: {}
-      }
-    }
-  }
 }
 
 const comments = (state = initialState, action) => {
